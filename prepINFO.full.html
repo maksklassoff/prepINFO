@@ -52,40 +52,33 @@ html,body{margin:0;padding:0;overflow-x:hidden}
   --hero-bg:linear-gradient(135deg,rgba(251,191,36,.18),rgba(236,72,153,.16),rgba(139,92,246,.18));
 }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
-  background:var(--bg);color:var(--text);line-height:1.62;-webkit-font-smoothing:antialiased;
-  min-height:100vh;position:relative;font-size:15px;transition:background .3s,color .3s;
-}
-[data-theme="dark"] body{
-  background-image:radial-gradient(ellipse 80% 55% at 50% -15%,rgba(168,85,247,.2),transparent),
-    radial-gradient(ellipse 60% 50% at 0% 100%,rgba(6,182,212,.14),transparent),
-    radial-gradient(ellipse 60% 50% at 100% 100%,rgba(236,72,153,.11),transparent);
-  background-attachment:fixed;
-}
-[data-theme="cyber"] body{background-image:radial-gradient(ellipse 80% 55% at 50% -15%,rgba(16,185,129,.22),transparent),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(6,182,212,.15),transparent);background-attachment:fixed;}
-[data-theme="viproyal"] body{background-image:radial-gradient(ellipse 85% 55% at 50% -15%,rgba(251,191,36,.24),transparent),radial-gradient(ellipse 65% 50% at 15% 100%,rgba(236,72,153,.18),transparent),radial-gradient(ellipse 65% 50% at 85% 100%,rgba(139,92,246,.2),transparent);background-attachment:fixed;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.62;-webkit-font-smoothing:antialiased;min-height:100vh;position:relative;font-size:15px;transition:background .3s,color .3s}
+[data-theme="dark"] body{background-image:radial-gradient(ellipse 80% 55% at 50% -15%,rgba(168,85,247,.2),transparent),radial-gradient(ellipse 60% 50% at 0% 100%,rgba(6,182,212,.14),transparent),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(236,72,153,.11),transparent);background-attachment:fixed}
+[data-theme="cyber"] body{background-image:radial-gradient(ellipse 80% 55% at 50% -15%,rgba(16,185,129,.22),transparent),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(6,182,212,.15),transparent);background-attachment:fixed}
+[data-theme="viproyal"] body{background-image:radial-gradient(ellipse 85% 55% at 50% -15%,rgba(251,191,36,.24),transparent),radial-gradient(ellipse 65% 50% at 15% 100%,rgba(236,72,153,.18),transparent),radial-gradient(ellipse 65% 50% at 85% 100%,rgba(139,92,246,.2),transparent);background-attachment:fixed}
 
 .wrap{max-width:1180px;margin:0 auto;padding:0 18px;position:relative;z-index:2}
 body.font-large{font-size:17px}
 body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation:none!important;transition:none!important}
 
 /* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes scaleIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(168,85,247,.2)}50%{box-shadow:0 0 32px rgba(168,85,247,.45)}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes vipShine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes vipCrownFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-3px) rotate(6deg)}}
 @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes particleFloat{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.65}90%{opacity:.65}100%{transform:translateY(-20vh) scale(1);opacity:0}}
+@keyframes progressFill{from{width:0}to{width:var(--w,0%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 #app.app-enter{animation:fadeInUp .42s cubic-bezier(.16,1,.3,1)}
 #app.app-enter > *{animation:fadeIn .5s ease}
 
-/* Typography */
 .user-display-name,.page-title,.hero h1,.cabinet-info h1{font-family:"Unbounded","JetBrains Mono","Segoe UI",sans-serif;font-weight:800;letter-spacing:-.005em}
 .vip-name{font-family:"Unbounded",sans-serif;font-weight:900!important;background:linear-gradient(90deg,#fde047,#f59e0b,#ec4899,#a855f7,#06b6d4,#fde047);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:vipShine 2.6s linear infinite;filter:drop-shadow(0 0 12px rgba(245,158,11,.55));display:inline-flex;align-items:center;gap:6px}
 .vip-crown{display:inline-block;-webkit-text-fill-color:initial;animation:vipCrownFloat 2.2s ease-in-out infinite}
@@ -111,7 +104,7 @@ body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation:none!impor
 .logo small{display:block;font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;line-height:1.1;margin-top:2px}
 
 .top-nav{display:flex;align-items:center;gap:5px;margin-left:6px;flex-wrap:wrap}
-.nav-pill{font:inherit;font-size:12.5px;font-weight:700;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:7px 10px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:5px}
+.nav-pill{font:inherit;font-size:12.5px;font-weight:700;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:7px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .18s cubic-bezier(.4,0,.2,1)}
 .nav-pill:hover{color:var(--text);border-color:var(--border-strong);background:var(--bg-card-hover);transform:translateY(-1px)}
 .nav-pill.active{background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(168,85,247,.2));color:var(--accent-1);border-color:var(--accent-1)}
 .nav-pill .badge-dot{background:var(--danger);color:#fff;font-size:10px;font-weight:800;padding:1px 6px;border-radius:99px}
@@ -174,12 +167,12 @@ body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation:none!impor
 
 .calc-field{margin-bottom:13px}
 .calc-field label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase}
-.calc-field input,.calc-field select{width:100%;font-family:Consolas,Monaco,"Courier New",monospace;font-size:14px;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg-input);color:var(--text);outline:none}
+.calc-field input,.calc-field select{width:100%;font-family:Consolas,Monaco,monospace;font-size:14px;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg-input);color:var(--text);outline:none}
 .calc-bits{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
 .bit-box{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
-.bit-box b{display:block;font-family:Consolas,Monaco,"Courier New",monospace;font-size:14px;color:var(--accent-1)}
+.bit-box b{display:block;font-family:Consolas,Monaco,monospace;font-size:14px;color:var(--accent-1)}
 .bit-box small{font-size:11px;color:var(--text-muted)}
-.lab-result{margin-top:10px;padding:12px 14px;border-radius:11px;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.28);font-family:Consolas,Monaco,"Courier New",monospace;font-size:13px;color:var(--text);line-height:1.55}
+.lab-result{margin-top:10px;padding:12px 14px;border-radius:11px;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.28);font-family:Consolas,Monaco,monospace;font-size:13px;color:var(--text);line-height:1.55}
 
 main{padding:18px 0 84px}
 h1.page-title{font-size:clamp(24px,4vw,32px);margin:0 0 10px;line-height:1.2;background:linear-gradient(135deg,var(--text),var(--accent-1));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -187,7 +180,8 @@ h1.page-title{font-size:clamp(24px,4vw,32px);margin:0 0 10px;line-height:1.2;bac
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:18px}
 .card h3{margin:0 0 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-1);font-weight:800;display:flex;align-items:center;gap:8px}
 
-.hero{position:relative;overflow:hidden;background:var(--hero-bg);border:1px solid var(--border);border-radius:24px;padding:32px 30px;margin-bottom:22px}
+.hero{position:relative;overflow:hidden;background:var(--hero-bg);border:1px solid var(--border);border-radius:24px;padding:32px 30px;margin-bottom:22px;animation:scaleIn .6s cubic-bezier(.16,1,.3,1)}
+.hero::before{content:'';position:absolute;inset:-50%;background:conic-gradient(from 0deg,transparent,rgba(6,182,212,.08),transparent 30%);animation:spin 18s linear infinite;pointer-events:none}
 .hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .hero-text{flex:1;min-width:270px}
 .hero-ill{flex:0 0 240px;max-width:240px}
@@ -226,39 +220,67 @@ h1.page-title{font-size:clamp(24px,4vw,32px);margin:0 0 10px;line-height:1.2;bac
 
 .topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(max-width:760px){.topic-grid{grid-template-columns:1fr}}
-.topic-card{display:flex;align-items:center;gap:14px;text-align:left;cursor:pointer;font:inherit;color:inherit;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;width:100%;transition:.2s}
-.topic-card:hover{border-color:var(--border-strong);background:var(--bg-card-hover);transform:translateY(-2px)}
+.topic-card{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;text-align:left;cursor:pointer;font:inherit;color:inherit;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;width:100%;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.topic-card:hover{border-color:var(--border-strong);background:var(--bg-card-hover);transform:translateY(-3px);box-shadow:var(--shadow)}
+.topic-card::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.topic-card:hover::after{transform:scaleX(1)}
+#topicGrid .topic-card{opacity:0;animation:fadeInUp .5s cubic-bezier(.16,1,.3,1) forwards}
+#topicGrid .topic-card:nth-child(1){animation-delay:0ms}
+#topicGrid .topic-card:nth-child(2){animation-delay:40ms}
+#topicGrid .topic-card:nth-child(3){animation-delay:80ms}
+#topicGrid .topic-card:nth-child(4){animation-delay:120ms}
+#topicGrid .topic-card:nth-child(5){animation-delay:160ms}
+#topicGrid .topic-card:nth-child(6){animation-delay:200ms}
+#topicGrid .topic-card:nth-child(7){animation-delay:240ms}
+#topicGrid .topic-card:nth-child(8){animation-delay:280ms}
+#topicGrid .topic-card:nth-child(n+9){animation-delay:320ms}
 .topic-num-badge{flex:0 0 44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(168,85,247,.2));color:var(--accent-1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
 .topic-body{display:flex;flex-direction:column;min-width:0;flex:1}
 .topic-body b{font-size:14.5px;font-weight:700;color:var(--text)}
 .topic-body small{color:var(--text-muted);font-size:12.5px;margin-top:3px}
 .topic-best{font-size:11px;font-weight:800;color:var(--success);background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);border-radius:20px;padding:3px 9px}
 
-/* Tabs (theory/practice) */
 .tabs{display:flex;gap:6px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:6px;margin-bottom:22px;position:sticky;top:72px;z-index:35;backdrop-filter:blur(8px)}
-.tab{flex:1;font:inherit;font-size:14px;font-weight:700;color:var(--text-muted);background:none;border:0;border-radius:10px;padding:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+.tab{flex:1;font:inherit;font-size:14px;font-weight:700;color:var(--text-muted);background:none;border:0;border-radius:10px;padding:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .22s cubic-bezier(.4,0,.2,1)}
 .tab:hover{color:var(--text);background:var(--bg-card-hover)}
-.tab.active{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;box-shadow:0 4px 16px rgba(168,85,247,.3)}
+.tab.active{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;box-shadow:0 4px 20px rgba(168,85,247,.4);transform:scale(1.02)}
 
-/* Theory */
+#theoryPane,#practicePane{animation:fadeIn .35s ease}
+
 .theory-hero{background:linear-gradient(135deg,rgba(6,182,212,.14),rgba(168,85,247,.14),rgba(236,72,153,.1));border:1px solid var(--border-strong);border-radius:16px;padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .theory-hero-icon{width:54px;height:54px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}
 .theory-hero-text{flex:1;min-width:180px}
 .theory-hero-text b{font-size:15px;font-weight:800;display:block;margin-bottom:2px}
 .theory-hero-text small{color:var(--text-muted);font-size:12.5px}
 
-.theory-block{position:relative;border-left:4px solid var(--accent-1);background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(168,85,247,.04));border:1px solid var(--border);border-radius:14px;padding:18px 20px 18px 22px;margin-bottom:14px;transition:.2s}
+.theory-block{position:relative;border-left:4px solid var(--accent-1);background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(168,85,247,.04));border:1px solid var(--border);border-radius:14px;padding:20px 22px 20px 24px;margin-bottom:14px;transition:.2s}
 .theory-block:hover{border-color:var(--border-strong);box-shadow:var(--shadow)}
-.theory-block h4{margin:0 0 10px;color:var(--accent-1);font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:8px}
-.theory-block h4::before{content:'📌';font-size:15px}
-.theory-block p{color:var(--text);font-size:14.5px;line-height:1.72;margin:0}
-.theory-block p+p{margin-top:8px}
-.theory-block code{font-family:Consolas,Monaco,"Courier New",monospace;background:rgba(6,182,212,.14);padding:2px 7px;border-radius:6px;color:var(--accent-1);font-size:13px}
-.theory-block .formula{display:block;background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(6,182,212,.08));border:1px solid rgba(168,85,247,.32);color:var(--text);padding:12px 16px;border-radius:10px;font-family:Consolas,Monaco,"Courier New",monospace;font-size:14px;margin:12px 0 0;font-weight:700;text-align:center;letter-spacing:.02em}
+.theory-block h4{margin:0 0 12px;color:var(--accent-1);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.theory-block h4::before{content:'📌';font-size:16px}
+.theory-block p{color:var(--text);font-size:15px;line-height:1.75;margin:0 0 10px}
+.theory-block p:last-child{margin-bottom:0}
+.theory-block code{font-family:Consolas,Monaco,monospace;background:rgba(6,182,212,.14);padding:2px 7px;border-radius:6px;color:var(--accent-1);font-size:13.5px}
+.theory-block .formula{display:block;background:linear-gradient(135deg,rgba(168,85,247,.16),rgba(6,182,212,.1));border:1px solid rgba(168,85,247,.35);color:var(--text);padding:14px 18px;border-radius:11px;font-family:Consolas,Monaco,monospace;font-size:15px;margin:14px 0;font-weight:700;text-align:center;letter-spacing:.02em;box-shadow:inset 0 0 24px rgba(168,85,247,.06)}
+.theory-block .formula::before{content:'∑  ';color:var(--accent-2);opacity:.8}
+.theory-bullets{list-style:none;padding:0;margin:10px 0}
+.theory-bullets li{position:relative;padding-left:24px;margin-bottom:8px;font-size:14.5px;line-height:1.7;color:var(--text)}
+.theory-bullets li::before{content:'▸';position:absolute;left:6px;color:var(--accent-2);font-weight:900}
+.theory-example{margin:14px 0;padding:14px 18px;border-radius:12px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.05));border:1px solid rgba(16,185,129,.32)}
+.theory-example-head{display:flex;align-items:center;gap:8px;font-weight:800;font-size:12.5px;color:var(--success);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.theory-example-head::before{content:'✏️'}
+.theory-example ol{margin:0;padding-left:22px;color:var(--text);font-size:14px;line-height:1.72}
+.theory-example li{margin-bottom:6px}
+.theory-example li::marker{color:var(--success);font-weight:800}
+.theory-mistakes{margin:14px 0 0;padding:12px 16px;border-radius:11px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.28)}
+.theory-mistakes-head{display:flex;align-items:center;gap:8px;font-weight:800;font-size:12.5px;color:var(--danger);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.theory-mistakes-head::before{content:'⚠️'}
+.theory-mistakes ul{margin:0;padding-left:20px;color:var(--text);font-size:13.5px;line-height:1.65}
+.theory-mistakes li{margin-bottom:4px}
+.theory-mistakes li::marker{color:var(--danger)}
 
-/* Task */
 .task{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:16px;transition:.2s}
 .task:hover{border-color:var(--border-strong)}
+.task.solved .task-num{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;animation:bounce .5s ease}
 .task-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .task-num{min-width:32px;height:30px;padding:0 8px;border-radius:9px;background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(168,85,247,.2));color:var(--accent-1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
 .task-type-tag{font-size:11px;font-weight:700;color:var(--accent-2);background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.25);border-radius:20px;padding:3px 10px}
@@ -267,14 +289,14 @@ h1.page-title{font-size:clamp(24px,4vw,32px);margin:0 0 10px;line-height:1.2;bac
 .task-q{margin:0 0 14px;font-size:15.5px;font-weight:600;color:var(--text);line-height:1.6}
 .task-visual{margin:0 0 14px;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow-x:auto}
 .task-visual svg{max-width:100%;height:auto;display:block;margin:0 auto}
-pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-radius:11px;padding:14px 16px;margin:0 0 14px;font-family:Consolas,Monaco,"Courier New",monospace;font-size:13px;overflow-x:auto;white-space:pre;color:var(--code-text);line-height:1.58}
+pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-radius:11px;padding:14px 16px;margin:0 0 14px;font-family:Consolas,Monaco,monospace;font-size:13px;overflow-x:auto;white-space:pre;color:var(--code-text);line-height:1.58}
 
 .hint-toggle{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;color:var(--warning);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:7px 12px;margin-bottom:10px;cursor:pointer}
 .hint-toggle:hover{background:rgba(245,158,11,.18)}
 .task-mini-theory{display:none;margin-bottom:14px;padding:12px 15px;border-radius:12px;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.25);font-size:13.5px;line-height:1.55}
 .task-mini-theory.open{display:block;animation:fadeIn .3s ease}
 .task-mini-theory b{color:var(--accent-2);display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-.task-mini-theory code{font-family:Consolas,Monaco,"Courier New",monospace;background:rgba(0,0,0,.22);padding:1px 6px;border-radius:5px;color:var(--accent-1)}
+.task-mini-theory code{font-family:Consolas,Monaco,monospace;background:rgba(0,0,0,.22);padding:1px 6px;border-radius:5px;color:var(--accent-1)}
 
 .options{display:flex;flex-direction:column;gap:9px}
 .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;font:inherit;font-size:14.5px;color:var(--text);background:var(--bg-input);border:1.5px solid var(--border);border-radius:11px;padding:11px 14px;transition:.15s}
@@ -296,7 +318,7 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .order-btn:hover{background:var(--bg-card-hover)}
 .order-item.is-correct{border-color:var(--success);background:rgba(16,185,129,.14)}
 
-.answer-input{width:100%;max-width:360px;font-family:Consolas,Monaco,"Courier New",monospace;font-size:15px;padding:12px 14px;border:1.5px solid var(--border);border-radius:11px;background:var(--bg-input);color:var(--text);outline:none}
+.answer-input{width:100%;max-width:360px;font-family:Consolas,Monaco,monospace;font-size:15px;padding:12px 14px;border:1.5px solid var(--border);border-radius:11px;background:var(--bg-input);color:var(--text);outline:none}
 .answer-input:focus{border-color:var(--accent-1)}
 .answer-input.is-correct{border-color:var(--success);background:rgba(16,185,129,.12)}
 .answer-input.is-wrong{border-color:var(--danger);background:rgba(239,68,68,.12)}
@@ -322,7 +344,7 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 
 .progress-row{display:flex;align-items:center;gap:14px;margin:18px 0}
 .progress{flex:1;height:10px;background:var(--bg-card-hover);border-radius:99px;overflow:hidden}
-.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border-radius:99px;transition:width .5s cubic-bezier(.16,1,.3,1)}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border-radius:99px;transition:width .5s cubic-bezier(.16,1,.3,1);animation:progressFill .7s cubic-bezier(.16,1,.3,1)}
 .progress-text{font-size:13px;font-weight:700;color:var(--text-muted);white-space:nowrap}
 
 .btn{font:inherit;font-size:14px;font-weight:700;border-radius:12px;padding:11px 18px;cursor:pointer;border:1.5px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}
@@ -331,12 +353,10 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .btn-ghost{background:var(--bg-card);color:var(--text);border-color:var(--border)}
 .btn-ghost:hover{border-color:var(--border-strong);background:var(--bg-card-hover)}
 .btn-check{background:rgba(6,182,212,.15);color:var(--accent-1);border-color:rgba(6,182,212,.35);padding:9px 15px;font-size:13px}
-.btn-mini-theory{background:rgba(168,85,247,.14);color:var(--accent-2);border-color:rgba(168,85,247,.32);padding:8px 12px;font-size:12.5px}
 .btn-video{background:rgba(245,158,11,.15);color:var(--warning);border-color:rgba(245,158,11,.35);padding:8px 12px;font-size:12.5px}
 .btn-ask-ai{background:rgba(6,182,212,.12);color:var(--accent-1);border-color:rgba(6,182,212,.28);padding:8px 12px;font-size:12.5px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
 
-/* Cabinet */
 .cabinet-header{display:flex;align-items:center;gap:20px;padding:26px;background:var(--hero-bg);border:1px solid var(--border);border-radius:20px;margin-bottom:20px;flex-wrap:wrap}
 .cabinet-avatar{flex:0 0 84px;height:84px;border-radius:20px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;overflow:hidden}
 .cabinet-info{flex:1;min-width:220px}
@@ -345,7 +365,11 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr}}
-.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;animation:fadeInUp .5s cubic-bezier(.16,1,.3,1) backwards}
+.stats-grid > .stat-card:nth-child(1){animation-delay:0ms}
+.stats-grid > .stat-card:nth-child(2){animation-delay:60ms}
+.stats-grid > .stat-card:nth-child(3){animation-delay:120ms}
+.stats-grid > .stat-card:nth-child(4){animation-delay:180ms}
 .stat-card .stat-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;letter-spacing:.06em}
 .stat-card .stat-value{font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
@@ -353,9 +377,13 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .chart-card h3{margin:0 0 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-1);font-weight:800;display:flex;align-items:center;gap:8px}
 #activityChart{width:100%;height:220px;display:block}
 
-/* Achievements */
 .ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.ach-item{padding:14px 8px;text-align:center;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);transition:.2s;position:relative;overflow:hidden}
+.ach-item{padding:14px 8px;text-align:center;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);transition:.2s;position:relative;overflow:hidden;animation:fadeInUp .4s cubic-bezier(.16,1,.3,1) backwards}
+.ach-item:nth-child(1){animation-delay:0ms}
+.ach-item:nth-child(2){animation-delay:30ms}
+.ach-item:nth-child(3){animation-delay:60ms}
+.ach-item:nth-child(4){animation-delay:90ms}
+.ach-item:nth-child(n+5){animation-delay:120ms}
 .ach-item.unlocked{border-color:rgba(16,185,129,.4);background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,182,212,.06))}
 .ach-item.locked{opacity:.45;filter:grayscale(1)}
 .ach-item .ach-icon{font-size:32px;display:block;margin-bottom:6px;line-height:1}
@@ -363,7 +391,6 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .ach-item .ach-desc{font-size:10.5px;color:var(--text-muted);margin-top:3px;line-height:1.35}
 .ach-item.unlocked::before{content:'✓';position:absolute;top:6px;right:8px;color:var(--success);font-weight:900;font-size:12px}
 
-/* Progress by topic */
 .tp-list{display:flex;flex-direction:column;gap:10px}
 .tp-item{padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
 .tp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px}
@@ -371,7 +398,6 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .tp-badge{font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px;background:rgba(6,182,212,.15);color:var(--accent-1)}
 .tp-badge.done{background:rgba(16,185,129,.18);color:var(--success)}
 
-/* Rewards */
 .rewards-list{display:flex;flex-direction:column;gap:8px}
 .reward-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;opacity:.5}
 .reward-item.done{opacity:1;border-color:rgba(16,185,129,.35);background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.04))}
@@ -381,10 +407,10 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .reward-info small{font-size:12px;color:var(--text-muted)}
 .reward-check{color:var(--success);font-weight:900;font-size:18px}
 
-/* Leaderboard */
 .lb-list{display:flex;flex-direction:column;gap:6px}
-.lb-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
-.lb-row.is-self{border-color:var(--accent-1);background:rgba(6,182,212,.08)}
+.lb-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;transition:.2s}
+.lb-row:hover{transform:translateX(4px);border-color:var(--border-strong)}
+.lb-row.is-self{border-color:var(--accent-1);background:rgba(6,182,212,.08);animation:glowPulse 2.5s ease-in-out infinite}
 .lb-rank{font-weight:900;font-size:14px;width:36px;text-align:center;color:var(--text-muted)}
 .lb-rank.gold{color:#fbbf24}
 .lb-rank.silver{color:#cbd5e1}
@@ -395,12 +421,10 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .lb-name small{color:var(--accent-1);font-weight:600}
 .lb-xp{font-size:13px;font-weight:800;color:var(--accent-1);font-family:Consolas,Monaco,monospace}
 
-/* Avatar upload */
 .avatar-upload-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .avatar-upload-actions{display:flex;flex-direction:column;gap:8px}
 .avatar-upload-label{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:0}
 
-/* Support */
 .support-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
 @media(max-width:820px){.support-grid{grid-template-columns:1fr}}
 .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--bg-input);overflow:hidden}
@@ -408,7 +432,6 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .faq-a{display:none;padding:0 16px 14px;font-size:14px;color:var(--text-muted);line-height:1.6;border-top:1px dashed var(--border);padding-top:10px}
 .faq-item.open .faq-a{display:block}
 
-/* Auth */
 .auth-page{max-width:460px;margin:20px auto}
 .auth-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:30px}
 .auth-tabs{display:flex;background:var(--bg-card-hover);border-radius:12px;padding:4px;margin-bottom:20px}
@@ -420,7 +443,6 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 .form-error{display:none;font-size:13.5px;font-weight:600;color:var(--danger);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 13px;margin-bottom:12px}
 .form-error.show{display:block}
 
-/* Chat */
 .chat-fab{position:fixed;right:22px;bottom:22px;z-index:90;height:54px;padding:0 18px;border-radius:99px;border:0;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font:inherit;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 8px 28px rgba(168,85,247,.45);transition:.2s}
 .chat-fab:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(168,85,247,.55)}
 .chat-window{position:fixed;right:22px;bottom:86px;z-index:95;width:400px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 115px);background:var(--bg-card-solid);border:1px solid var(--border-strong);border-radius:20px;box-shadow:var(--shadow);display:none;flex-direction:column;overflow:hidden;animation:scaleIn .25s ease}
@@ -445,6 +467,10 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 
 .admin-panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(max-width:720px){.admin-panel-grid{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
@@ -485,7 +511,7 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <div><b>prepINFO Pro 2027 · v6.0</b> · Почта поддержки: <b>kuliemaksim@gmail.com</b></div>
+    <div><b>prepINFO Pro 2027 · v6.0</b> · Почта: <b>kuliemaksim@gmail.com</b></div>
     <div class="footer-links">
       <button class="footer-link" data-nav="support" type="button">Поддержка</button>
       <button class="footer-link" id="footerCalcLab" type="button">Калькулятор и Лаб</button>
@@ -512,33 +538,30 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 <div class="drawer" id="calcLabDrawer">
   <div class="drawer-overlay" id="calcLabOverlay"></div>
   <div class="drawer-panel">
-    <div class="drawer-header">
-      <h2>🧮 Калькулятор и Лаб</h2>
-      <button class="drawer-close" id="calcLabClose" type="button">×</button>
-    </div>
+    <div class="drawer-header"><h2>🧮 Калькулятор и Лаб</h2><button class="drawer-close" id="calcLabClose" type="button">×</button></div>
     <div class="drawer-body">
       <div class="drawer-tabs">
         <button type="button" class="drawer-tab active" data-cltab="calc">🧮 Калькулятор СС</button>
         <button type="button" class="drawer-tab" data-cltab="lab">🧪 Лаб</button>
       </div>
       <div id="clPaneCalc">
-        <p style="font-size:13.5px;color:var(--text-muted);margin-top:0">Введите значение в любой системе счисления — остальные пересчитаются.</p>
-        <div class="calc-field"><label><span>Десятичная (DEC)</span><span>10</span></label><input type="text" id="calcDec" value="42"></div>
-        <div class="calc-field"><label><span>Двоичная (BIN)</span><span>2</span></label><input type="text" id="calcBin" value="101010"></div>
-        <div class="calc-field"><label><span>Восьмеричная (OCT)</span><span>8</span></label><input type="text" id="calcOct" value="52"></div>
-        <div class="calc-field"><label><span>Шестнадцатеричная (HEX)</span><span>16</span></label><input type="text" id="calcHex" value="2A"></div>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-top:0">Введите значение в любой системе — остальные пересчитаются.</p>
+        <div class="calc-field"><label><span>DEC</span><span>10</span></label><input type="text" id="calcDec" value="42"></div>
+        <div class="calc-field"><label><span>BIN</span><span>2</span></label><input type="text" id="calcBin" value="101010"></div>
+        <div class="calc-field"><label><span>OCT</span><span>8</span></label><input type="text" id="calcOct" value="52"></div>
+        <div class="calc-field"><label><span>HEX</span><span>16</span></label><input type="text" id="calcHex" value="2A"></div>
         <div class="calc-bits">
           <div class="bit-box"><b id="bitLen">6</b><small>Бит</small></div>
           <div class="bit-box"><b id="bitOnes">3</b><small>Единиц</small></div>
           <div class="bit-box"><b id="bitZeros">3</b><small>Нулей</small></div>
-          <div class="bit-box"><b id="bitPow">2^5</b><small>Старший бит</small></div>
+          <div class="bit-box"><b id="bitPow">2^5</b><small>Старший</small></div>
         </div>
       </div>
       <div id="clPaneLab" style="display:none">
         <div class="settings-section">
           <h3>Объём информации</h3>
-          <div class="calc-field"><label><span>Мощность алфавита N</span><span>i = ⌈log₂N⌉</span></label><input type="number" id="labN" value="256" min="2"></div>
-          <div class="calc-field"><label><span>Количество символов K</span><span>I = K·i</span></label><input type="number" id="labK" value="1024" min="1"></div>
+          <div class="calc-field"><label><span>Мощность N</span><span>i = ⌈log₂N⌉</span></label><input type="number" id="labN" value="256" min="2"></div>
+          <div class="calc-field"><label><span>Символов K</span><span>I = K·i</span></label><input type="number" id="labK" value="1024" min="1"></div>
           <div class="lab-result" id="labInfoOut"></div>
         </div>
         <div class="settings-section">
@@ -549,12 +572,7 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
         <div class="settings-section">
           <h3>Логические операции</h3>
           <div class="calc-field"><label><span>A, B</span><span>¬ ∧ ∨ → ≡</span></label>
-            <select id="labLogic">
-              <option value="0,0">0,0</option>
-              <option value="0,1">0,1</option>
-              <option value="1,0">1,0</option>
-              <option value="1,1" selected>1,1</option>
-            </select>
+            <select id="labLogic"><option value="0,0">0,0</option><option value="0,1">0,1</option><option value="1,0">1,0</option><option value="1,1" selected>1,1</option></select>
           </div>
           <div class="lab-result" id="labLogicOut"></div>
         </div>
@@ -566,10 +584,7 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 <div class="drawer" id="settingsDrawer">
   <div class="drawer-overlay" id="settingsOverlay"></div>
   <div class="drawer-panel">
-    <div class="drawer-header">
-      <h2>⚙️ Настройки</h2>
-      <button class="drawer-close" id="settingsClose" type="button">×</button>
-    </div>
+    <div class="drawer-header"><h2>⚙️ Настройки</h2><button class="drawer-close" id="settingsClose" type="button">×</button></div>
     <div class="drawer-body">
       <div class="settings-section">
         <h3>Оформление</h3>
@@ -610,6 +625,23 @@ pre.code{background:var(--code-bg);border:1px solid rgba(6,182,212,.22);border-r
 
 var SUPPORT_EMAIL='kuliemaksim@gmail.com';
 
+/* ================================================================
+   ОБЛАЧНЫЙ ТОП (JSONBin.io)
+   ================================================================
+   Как настроить за 2 минуты:
+   1) Зарегистрируйтесь на jsonbin.io (бесплатно).
+   2) Нажмите "+ Create Bin", вставьте: {"players":[]} → Save.
+   3) Скопируйте Bin ID из URL: jsonbin.io/b/<ЭТО_BIN_ID>/latest
+   4) Слева "API Keys" → X-Master-Key → скопируйте.
+   5) Вставьте оба значения ниже.
+   Пока значения-заглушки, работает локальный топ.
+   ================================================================ */
+var CLOUD={
+  binId:'6b05a0a9ffd5d16053da8e63',
+  apiKey:'$2a$10$o0YHW8UwwrLQK4XDbgqm5.UJjbdxySj78nWwXhUryniQwqunTfIXC',
+  syncInterval:8000
+};
+
 var storage=(function(){
   var mem={},avail=false;
   try{window.localStorage.setItem('__t','1');window.localStorage.removeItem('__t');avail=true}catch(e){}
@@ -620,6 +652,10 @@ var storage=(function(){
   };
 })();
 
+function cloudEnabled(){
+  return CLOUD.binId&&CLOUD.apiKey&&CLOUD.binId.indexOf('ВСТАВЬТЕ')<0&&CLOUD.apiKey.indexOf('ВСТАВЬТЕ')<0;
+}
+
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function normalize(s){return String(s==null?'':s).toLowerCase().replace(/,/g,'.').replace(/\s+/g,'').trim()}
 function plural(n,one,few,many){var m=n%10,m100=n%100;if(m===1&&m100!==11)return one;if(m>=2&&m<=4&&(m100<10||m100>=20))return few;return many}
@@ -627,8 +663,7 @@ function today(){return new Date().toISOString().slice(0,10)}
 
 function showToast(msg,ico){
   var box=document.getElementById('toastBox');if(!box)return;
-  var el=document.createElement('div');
-  el.className='toast';
+  var el=document.createElement('div');el.className='toast';
   el.innerHTML='<span>'+esc(ico||'✨')+'</span><span>'+esc(msg)+'</span>';
   box.appendChild(el);
   setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},3500);
@@ -636,7 +671,7 @@ function showToast(msg,ico){
 
 var DEFAULT_SETTINGS={theme:'dark',fontSize:'normal',animations:true,sound:false};
 var settings=(function(){
-  try{var s=JSON.parse(storage.get('inf_settings')||'{}');var r={};
+  try{var s=JSON.parse(storage.get('inf_settings')||'{}'),r={};
     for(var k in DEFAULT_SETTINGS)r[k]=(s.hasOwnProperty(k)?s[k]:DEFAULT_SETTINGS[k]);return r;
   }catch(e){return{theme:'dark',fontSize:'normal',animations:true,sound:false}}
 })();
@@ -693,88 +728,73 @@ var SVG={
 var DATA={
 oge:{title:'ОГЭ по информатике',badge:'ОГЭ',subtitle:'Все 15 заданий ОГЭ 2027 · теория + практика + видеоразборы',topics:[
   {id:'oge-1',num:1,title:'Количество информации',theory:[
-    {h:'Формула Хартли',p:'Мощность алфавита N и вес одного символа i связаны формулой:',f:'N = 2^i'},
-    {h:'Объём сообщения',p:'Объём сообщения из K символов:',f:'I = K · i (бит)'}],
-   tasks:[
-     {type:'choice',points:1,miniTheory:'Найдите степень двойки, равную 32.',q:'Сколько бит на один символ алфавита мощностью 32?',options:['4','5','6','8'],answer:1,solution:['32 = 2^5 → i = 5 бит.'],final:'Ответ: 5.'},
-     {type:'input',points:1,miniTheory:'Сначала i из <code>16 = 2^i</code>, затем <code>I = K·i</code>.',q:'Сообщение из 128 символов алфавита мощностью 16. Объём в битах?',answer:['512'],solution:['16 = 2^4 → i = 4 бита.','I = 128 · 4 = 512 бит.'],final:'Ответ: 512.'},
-     {type:'input',points:1,miniTheory:'<code>V = Ш · В · i</code>',q:'Изображение 64×64 пикселя, 16 цветов. Объём в Кбайтах?',answer:['2'],solution:['i = 4 бита.','64·64·4 = 16384 бит = 2048 байт = 2 Кбайт.'],final:'Ответ: 2.'},
-     {type:'multi',points:2,miniTheory:'Кило = 1024, 1 байт = 8 бит.',q:'Верные утверждения:',options:['1 байт = 8 бит','1 Кбайт = 1000 байт','1 Мбайт = 1024 Кбайт','При i=6 бит мощность = 64'],answer:[0,2,3],solution:['Верно 1, 3, 4.'],final:'Ответ: 1, 3, 4.'}
-   ]},
+    {h:'Формула Хартли',p:'Мощность алфавита N — количество различных символов. Вес одного символа i (в битах) показывает, сколько информации несёт один символ.',f:'N = 2^i   ⟺   i = log₂N',bullets:['N = 32 → i = 5 бит','N = 64 → i = 6 бит','N = 256 → i = 8 бит = 1 байт'],example:{title:'Алфавит из 8 символов',steps:['Найти i: 8 = 2^i → i = 3 бита','Сообщение из 10 символов весит 10 · 3 = 30 бит']},mistakes:['Путать N и i — N это число символов, i это вес одного','Забывать, что 1 байт = 8 бит при переводе']},
+    {h:'Объём сообщения',p:'Объём сообщения из K символов при весе одного символа i:',f:'I = K · i  (в битах)',example:{title:'Сообщение из 128 символов, N = 16',steps:['i = log₂16 = 4 бита','I = 128 · 4 = 512 бит','В байтах: 512 / 8 = 64 байта']}}
+  ],tasks:[
+    {type:'choice',points:1,miniTheory:'Найдите степень двойки для 32.',q:'Сколько бит на один символ алфавита мощностью 32?',options:['4','5','6','8'],answer:1,solution:['32 = 2^5 → i = 5 бит.'],final:'Ответ: 5.'},
+    {type:'input',points:1,miniTheory:'<code>i = log₂16</code>, затем <code>I = K·i</code>.',q:'128 символов алфавита мощностью 16. Объём в битах?',answer:['512'],solution:['16 = 2^4 → i = 4.','I = 128 · 4 = 512 бит.'],final:'Ответ: 512.'},
+    {type:'input',points:1,miniTheory:'<code>V = Ш · В · i</code>',q:'Изображение 64×64, 16 цветов. Объём в Кбайтах?',answer:['2'],solution:['i = 4 бита.','64·64·4 = 16384 бит = 2048 байт = 2 Кбайт.'],final:'Ответ: 2.'},
+    {type:'multi',points:2,miniTheory:'Кило = 1024, 1 байт = 8 бит.',q:'Верные утверждения:',options:['1 байт = 8 бит','1 Кбайт = 1000 байт','1 Мбайт = 1024 Кбайт','При i=6 бит мощность = 64'],answer:[0,2,3],solution:['Верно 1, 3, 4.'],final:'Ответ: 1, 3, 4.'}
+  ]},
   {id:'oge-2',num:2,title:'Кодирование и декодирование',theory:[
-    {h:'Условие Фано',p:'Ни одно кодовое слово не должно быть началом другого.'},
-    {h:'Число комбинаций',p:'Из алфавита N можно составить N^L сообщений длины L.',f:'N^L'}],
-   tasks:[
-     {type:'choice',points:1,miniTheory:'Условие Фано — про префиксы.',q:'Прямое условие Фано:',options:['Все коды одной длины','Ни одно слово не начало другого','Коды только из 0 и 1','Чётное число единиц'],answer:1,solution:['Ни одно не начало другого.'],final:'Ответ: 2.'},
-     {type:'input',points:1,miniTheory:'<code>N^L</code>',q:'Сколько сообщений длины 4 из алфавита 8?',answer:['4096'],solution:['8^4 = 4096.'],final:'Ответ: 4096.'},
-     {type:'input',points:1,tag2027:true,miniTheory:'Словарь: 110=Г, 10=В, 010=Б, 00=А.',q:'[2027] А=00, Б=010, В=10, Г=110. Расшифруйте 1101001000.',answer:['ГВБА'],solution:['110(Г)+10(В)+010(Б)+00(А).'],final:'Ответ: ГВБА.'}
-   ]},
+    {h:'Условие Фано',p:'Ни одно кодовое слово не должно быть началом (префиксом) другого.',bullets:['Если A = 0, то B не может начинаться с 0','Если A = 10, то B не может быть 100, 101','Используйте дерево кодирования']},
+    {h:'Число комбинаций',p:'Из алфавита N можно составить N^L сообщений длины L.',f:'N^L',example:{title:'3 буквы, длина 2',steps:['3² = 9','Варианты: AA, AB, AC, BA, BB, BC, CA, CB, CC']}}
+  ],tasks:[
+    {type:'choice',points:1,miniTheory:'Условие Фано — про префиксы.',q:'Прямое условие Фано:',options:['Все коды одной длины','Ни одно слово не начало другого','Коды только из 0 и 1','Чётное число единиц'],answer:1,solution:['Ни одно не начало другого.'],final:'Ответ: 2.'},
+    {type:'input',points:1,miniTheory:'N^L',q:'Сколько сообщений длины 4 из алфавита 8?',answer:['4096'],solution:['8^4 = 4096.'],final:'Ответ: 4096.'},
+    {type:'input',points:1,tag2027:true,miniTheory:'Словарь: 110=Г, 10=В, 010=Б, 00=А.',q:'[2027] А=00, Б=010, В=10, Г=110. Расшифруйте 1101001000.',answer:['ГВБА'],solution:['110(Г)+10(В)+010(Б)+00(А).'],final:'Ответ: ГВБА.'}
+  ]},
   {id:'oge-3',num:3,title:'Логические выражения',theory:[
-    {h:'Приоритет операций',p:'Скобки → ¬ → ∧ → ∨',f:'() → ¬ → ∧ → ∨'}],
-   tasks:[
-     {type:'choice',points:1,miniTheory:'<code>0∧1=0</code>, затем <code>1∨0=1</code>.',q:'1 ∨ (0 ∧ 1) = ?',options:['0','1'],answer:1,solution:['0∧1=0; 1∨0=1.'],final:'Ответ: 1.'},
-     {type:'input',points:1,miniTheory:'<code>¬0 = 1</code>, <code>1∧1 = 1</code>.',q:'(¬A) ∧ B при A=0, B=1?',answer:['1'],solution:['¬0=1; 1∧1=1.'],final:'Ответ: 1.'},
-     {type:'input',points:1,tag2027:true,miniTheory:'<code>НЕ(x<15)</code> = <code>x≥15</code>.',q:'[2027] Наименьшее целое x: НЕ(x<15) И (x нечётное).',answer:['15'],solution:['x≥15 и нечётное → 15.'],final:'Ответ: 15.'}
-   ]},
-  {id:'oge-4',num:4,title:'Файловая система и маски',theory:[
-    {h:'Маски',p:'«*» — любое число символов, «?» — ровно один.'}],
-   tasks:[
-     {type:'choice',points:1,miniTheory:'Программы — .exe.',q:'Расширение исполняемых файлов Windows:',options:['.txt','.exe','.jpg','.mp3'],answer:1,solution:['.exe'],final:'Ответ: .exe.'},
-     {type:'input',points:1,miniTheory:'Ровно 1 символ перед .dat.',q:'Сколько из (a.dat, ab.dat, a1.dat, 12.dat, 9.dat) подходят под ?.dat?',answer:['2'],solution:['a.dat и 9.dat.'],final:'Ответ: 2.'}
-   ]},
-  {id:'oge-5',num:5,title:'Электронные таблицы',theory:[
-    {h:'Ссылки',p:'$A$1 не меняется, B2 сдвигается.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'Сначала умножение.',q:'A1=5, B1=3. Формула =A1*B1+2 = ?',answer:['17'],solution:['5·3+2 = 17.'],final:'Ответ: 17.'},
-     {type:'choice',points:1,miniTheory:'B2 при сдвиге вправо → C2.',q:'=$A$1+B2 из C1 в D1:',options:['=$A$1+C2','=$B$1+B2','=$A$1+B2','=A1+B2'],answer:0,solution:['=$A$1+C2'],final:'Ответ: 1.'}
-   ]},
-  {id:'oge-6',num:6,title:'Алгоритмы и исполнители',theory:[
-    {h:'Трассировка',p:'Отслеживайте значения переменных после каждой строки.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'a=10-4=6, b=6+4=10.',q:'Что выведет программа?',code:'a = 10\nb = 4\na = a - b\nb = a + b\nprint(b)',answer:['10'],solution:['b = 10.'],final:'Ответ: 10.'},
-     {type:'order',points:2,miniTheory:'while x<10: x=x*2',q:'Порядок шагов при x=1:',items:['x = 1','4<10 → x=8','8<10 → x=16','16<10 — стоп'],answer:[0,1,2,3],solution:['1→2→3→4.'],final:'Ответ: 1,2,3,4.'}
-   ]},
-  {id:'oge-7',num:7,title:'Диаграммы и таблицы',theory:[{h:'Проценты',p:'Сумма секторов = 100%.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'25% от 400 = 100.',q:'400 учеников, 25% отличников. Сколько?',answer:['100'],solution:['400·0,25 = 100.'],final:'Ответ: 100.'},
-     {type:'input',points:1,miniTheory:'100-30-45 = 25.',q:'Секторы 30%, 45%, X%. X = ?',answer:['25'],solution:['X = 25.'],final:'Ответ: 25.'}
-   ]},
-  {id:'oge-8',num:8,title:'Поисковые запросы',theory:[{h:'Включения-исключения',f:'|A ∪ B| = |A| + |B| − |A ∩ B|'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'Формула включений-исключений.',q:'«кошка»=100, «собака»=150, «кошка&собака»=40. «кошка|собака»=?',answer:['210'],solution:['100+150-40=210.'],final:'Ответ: 210.'}
-   ]},
-  {id:'oge-9',num:9,title:'Анализ графов',theory:[{h:'Кратчайший путь',p:'Сравнивайте маршруты и берите минимум.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'A-C-D = 2+3 = 5.',q:'Кратчайший путь A→D по схеме:',visual:SVG.graphShort(),answer:['5'],solution:['A-C-D = 5.'],final:'Ответ: 5.'}
-   ]},
-  {id:'oge-10',num:10,title:'Программирование. Циклы',theory:[{h:'Деление',p:'<code>//</code> — нацело, <code>%</code> — остаток.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'range(1,5) = 1,2,3,4.',q:'Что выведет?',code:'s = 0\nfor i in range(1,5):\n    s = s + i\nprint(s)',answer:['10'],solution:['1+2+3+4 = 10.'],final:'Ответ: 10.'}
-   ]},
-  {id:'oge-11',num:11,title:'Поиск файлов и маски',theory:[{h:'Маски',p:'<code>*</code> — много, <code>?</code> — один символ.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'*.doc покрывает .doc.',q:'Сколько из (a.doc, b.txt, c.doc, d.docx) под *.doc?',answer:['2'],solution:['a.doc и c.doc.'],final:'Ответ: 2.'},
-     {type:'choice',points:1,miniTheory:'test?.txt — ровно 1 символ.',q:'Какое имя под test?.txt?',options:['test1.txt','test.txt','test12.txt','t.txt'],answer:0,solution:['test1.txt.'],final:'Ответ: test1.txt.'}
-   ]},
-  {id:'oge-12',num:12,title:'Перебор вариантов',theory:[{h:'Правило умножения',f:'N = n₁·n₂·...·nₖ'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'2^4 = 16.',q:'Сколько вариантов ответа в тесте из 4 вопросов да/нет?',answer:['16'],solution:['2^4 = 16.'],final:'Ответ: 16.'},
-     {type:'input',points:1,miniTheory:'3 буквы, 2 позиции.',q:'Сколько 2-буквенных слов из А,Б,В (с повторами)?',answer:['9'],solution:['3^2 = 9.'],final:'Ответ: 9.'}
-   ]},
-  {id:'oge-13',num:13,title:'Скорость передачи данных',theory:[{h:'Формула',f:'t = I / V'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'t = I / V.',q:'Файл 1 Мбайт, скорость 1 Мбайт/с. Время в секундах?',answer:['1'],solution:['t = 1 / 1 = 1.'],final:'Ответ: 1.'},
-     {type:'input',points:1,miniTheory:'I = V·t.',q:'4 сек, 256 Кбайт/с. Объём в Кбайтах?',answer:['1024'],solution:['256·4 = 1024.'],final:'Ответ: 1024.'}
-   ]},
-  {id:'oge-14',num:14,title:'Массивы',theory:[{h:'Среднее',p:'<code>sum(a)/len(a)</code>'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'(3+5+7)/3.',q:'Среднее [3, 5, 7]?',answer:['5'],solution:['(3+5+7)/3 = 5.'],final:'Ответ: 5.'},
-     {type:'input',points:1,miniTheory:'max()',q:'Максимум [4, 8, 2, 9]?',answer:['9'],solution:['9.'],final:'Ответ: 9.'}
-   ]},
-  {id:'oge-15',num:15,title:'Ветвления',theory:[{h:'if/else',p:'Выбор зависит от условия.'}],
-   tasks:[
-     {type:'input',points:1,miniTheory:'7>5 → истина.',q:'if x>5 then x*2 else x+2 при x=7?',answer:['14'],solution:['7·2 = 14.'],final:'Ответ: 14.'}
-   ]}
+    {h:'Приоритет операций',p:'Скобки → НЕ (¬) → И (∧) → ИЛИ (∨).',f:'() → ¬ → ∧ → ∨',bullets:['¬1 = 0, ¬0 = 1','1 ∧ 1 = 1, остальные 0','0 ∨ 0 = 0, остальные 1']}
+  ],tasks:[
+    {type:'choice',points:1,miniTheory:'<code>0∧1=0</code>, затем <code>1∨0=1</code>.',q:'1 ∨ (0 ∧ 1) = ?',options:['0','1'],answer:1,solution:['0∧1=0; 1∨0=1.'],final:'Ответ: 1.'},
+    {type:'input',points:1,miniTheory:'<code>¬0 = 1</code>, <code>1∧1 = 1</code>.',q:'(¬A) ∧ B при A=0, B=1?',answer:['1'],solution:['¬0=1; 1∧1=1.'],final:'Ответ: 1.'},
+    {type:'input',points:1,tag2027:true,miniTheory:'<code>НЕ(x<15)</code> = <code>x≥15</code>.',q:'[2027] Наименьшее целое x: НЕ(x<15) И (x нечётное).',answer:['15'],solution:['x≥15 и нечётное → 15.'],final:'Ответ: 15.'}
+  ]},
+  {id:'oge-4',num:4,title:'Файловая система и маски',theory:[{h:'Маски',p:'«*» — любое число символов, «?» — ровно один.',bullets:['*.txt — все .txt файлы','?.txt — один символ + .txt','a?b.* — a, любой символ, b, любое расширение']}],tasks:[
+    {type:'choice',points:1,miniTheory:'Программы — .exe.',q:'Расширение исполняемых файлов Windows:',options:['.txt','.exe','.jpg','.mp3'],answer:1,solution:['.exe'],final:'Ответ: .exe.'},
+    {type:'input',points:1,miniTheory:'Ровно 1 символ перед .dat.',q:'Сколько из (a.dat, ab.dat, a1.dat, 12.dat, 9.dat) подходят под ?.dat?',answer:['2'],solution:['a.dat и 9.dat.'],final:'Ответ: 2.'}
+  ]},
+  {id:'oge-5',num:5,title:'Электронные таблицы',theory:[{h:'Ссылки',p:'$A$1 не меняется, B2 сдвигается.'}],tasks:[
+    {type:'input',points:1,miniTheory:'Сначала умножение.',q:'A1=5, B1=3. Формула =A1*B1+2 = ?',answer:['17'],solution:['5·3+2 = 17.'],final:'Ответ: 17.'},
+    {type:'choice',points:1,miniTheory:'B2 при сдвиге вправо → C2.',q:'=$A$1+B2 из C1 в D1:',options:['=$A$1+C2','=$B$1+B2','=$A$1+B2','=A1+B2'],answer:0,solution:['=$A$1+C2'],final:'Ответ: 1.'}
+  ]},
+  {id:'oge-6',num:6,title:'Алгоритмы и исполнители',theory:[{h:'Трассировка',p:'Отслеживайте значения переменных после каждой строки.'}],tasks:[
+    {type:'input',points:1,miniTheory:'a=10-4=6, b=6+4=10.',q:'Что выведет программа?',code:'a = 10\nb = 4\na = a - b\nb = a + b\nprint(b)',answer:['10'],solution:['b = 10.'],final:'Ответ: 10.'},
+    {type:'order',points:2,miniTheory:'while x<10: x=x*2',q:'Порядок шагов при x=1:',items:['x = 1','4<10 → x=8','8<10 → x=16','16<10 — стоп'],answer:[0,1,2,3],solution:['1→2→3→4.'],final:'Ответ: 1,2,3,4.'}
+  ]},
+  {id:'oge-7',num:7,title:'Диаграммы и таблицы',theory:[{h:'Проценты',p:'Сумма секторов = 100%.'}],tasks:[
+    {type:'input',points:1,miniTheory:'25% от 400 = 100.',q:'400 учеников, 25% отличников. Сколько?',answer:['100'],solution:['400·0,25 = 100.'],final:'Ответ: 100.'},
+    {type:'input',points:1,miniTheory:'100-30-45 = 25.',q:'Секторы 30%, 45%, X%. X = ?',answer:['25'],solution:['X = 25.'],final:'Ответ: 25.'}
+  ]},
+  {id:'oge-8',num:8,title:'Поисковые запросы',theory:[{h:'Включения-исключения',f:'|A ∪ B| = |A| + |B| − |A ∩ B|'}],tasks:[
+    {type:'input',points:1,miniTheory:'Формула включений-исключений.',q:'«кошка»=100, «собака»=150, «кошка&собака»=40. «кошка|собака»=?',answer:['210'],solution:['100+150-40=210.'],final:'Ответ: 210.'}
+  ]},
+  {id:'oge-9',num:9,title:'Анализ графов',theory:[{h:'Кратчайший путь',p:'Сравнивайте маршруты и берите минимум.'}],tasks:[
+    {type:'input',points:1,miniTheory:'A-C-D = 2+3 = 5.',q:'Кратчайший путь A→D по схеме:',visual:SVG.graphShort(),answer:['5'],solution:['A-C-D = 5.'],final:'Ответ: 5.'}
+  ]},
+  {id:'oge-10',num:10,title:'Программирование. Циклы',theory:[{h:'Деление',p:'<code>//</code> — нацело, <code>%</code> — остаток.'}],tasks:[
+    {type:'input',points:1,miniTheory:'range(1,5) = 1,2,3,4.',q:'Что выведет?',code:'s = 0\nfor i in range(1,5):\n    s = s + i\nprint(s)',answer:['10'],solution:['1+2+3+4 = 10.'],final:'Ответ: 10.'}
+  ]},
+  {id:'oge-11',num:11,title:'Поиск файлов и маски',theory:[{h:'Маски',p:'<code>*</code> — много, <code>?</code> — один символ.'}],tasks:[
+    {type:'input',points:1,miniTheory:'*.doc покрывает .doc.',q:'Сколько из (a.doc, b.txt, c.doc, d.docx) под *.doc?',answer:['2'],solution:['a.doc и c.doc.'],final:'Ответ: 2.'},
+    {type:'choice',points:1,miniTheory:'test?.txt — ровно 1 символ.',q:'Какое имя под test?.txt?',options:['test1.txt','test.txt','test12.txt','t.txt'],answer:0,solution:['test1.txt.'],final:'Ответ: test1.txt.'}
+  ]},
+  {id:'oge-12',num:12,title:'Перебор вариантов',theory:[{h:'Правило умножения',f:'N = n₁·n₂·...·nₖ'}],tasks:[
+    {type:'input',points:1,miniTheory:'2^4 = 16.',q:'Сколько вариантов ответа в тесте из 4 вопросов да/нет?',answer:['16'],solution:['2^4 = 16.'],final:'Ответ: 16.'},
+    {type:'input',points:1,miniTheory:'3 буквы, 2 позиции.',q:'Сколько 2-буквенных слов из А,Б,В (с повторами)?',answer:['9'],solution:['3^2 = 9.'],final:'Ответ: 9.'}
+  ]},
+  {id:'oge-13',num:13,title:'Скорость передачи данных',theory:[{h:'Формула',f:'t = I / V'}],tasks:[
+    {type:'input',points:1,miniTheory:'t = I / V.',q:'Файл 1 Мбайт, скорость 1 Мбайт/с. Время в секундах?',answer:['1'],solution:['t = 1 / 1 = 1.'],final:'Ответ: 1.'},
+    {type:'input',points:1,miniTheory:'I = V·t.',q:'4 сек, 256 Кбайт/с. Объём в Кбайтах?',answer:['1024'],solution:['256·4 = 1024.'],final:'Ответ: 1024.'}
+  ]},
+  {id:'oge-14',num:14,title:'Массивы',theory:[{h:'Среднее',p:'<code>sum(a)/len(a)</code>'}],tasks:[
+    {type:'input',points:1,miniTheory:'(3+5+7)/3.',q:'Среднее [3, 5, 7]?',answer:['5'],solution:['(3+5+7)/3 = 5.'],final:'Ответ: 5.'},
+    {type:'input',points:1,miniTheory:'max()',q:'Максимум [4, 8, 2, 9]?',answer:['9'],solution:['9.'],final:'Ответ: 9.'}
+  ]},
+  {id:'oge-15',num:15,title:'Ветвления',theory:[{h:'if/else',p:'Выбор зависит от условия.'}],tasks:[
+    {type:'input',points:1,miniTheory:'7>5 → истина.',q:'if x>5 then x*2 else x+2 при x=7?',answer:['14'],solution:['7·2 = 14.'],final:'Ответ: 14.'}
+  ]}
 ]},
 ege:{title:'ЕГЭ по информатике',badge:'ЕГЭ',subtitle:'27 заданий ЕГЭ 2027 · полная теория + практика',topics:[
   {id:'ege-1',num:1,title:'Графы и таблицы',theory:[{h:'Анализ графов',p:'Сопоставление связей вершин и весов рёбер.'}],tasks:[
@@ -833,6 +853,145 @@ ege:{title:'ЕГЭ по информатике',badge:'ЕГЭ',subtitle:'27 за
     {type:'input',points:1,miniTheory:'27→9→3→1.',q:'Что выведет?',code:'n = 27\nk = 0\nwhile n > 1:\n    n = n // 3\n    k = k + 1\nprint(k)',answer:['3'],solution:['k = 3.'],final:'Ответ: 3.'}]}
 ]}};
 
+/* ============ ДОПОЛНИТЕЛЬНЫЕ ЗАДАНИЯ ============ */
+(function addMoreTasks(){
+  var extra={
+    'oge-1':[
+      {type:'input',points:1,miniTheory:'N = 2^i, i = log₂N',q:'Алфавит содержит 4 символа. Сколько бит весит 1 символ?',answer:['2'],solution:['4 = 2^2 → i = 2 бита.'],final:'Ответ: 2.'},
+      {type:'choice',points:1,miniTheory:'1 байт = 8 бит',q:'Сколько бит в 3 байтах?',options:['18','24','30','32'],answer:1,solution:['3 · 8 = 24 бита.'],final:'Ответ: 24.'}
+    ],
+    'oge-2':[
+      {type:'input',points:1,miniTheory:'Условие Фано — про префиксы',q:'Минимальная длина кода для 4-го символа, если уже есть коды 0, 10, 11?',answer:['2'],solution:['Свободных 2-битных нет — но коды 0,10,11 заняли все. Свободные ветви 3-битные. Ответ: 3.'],final:'Ответ: 3.'},
+      {type:'input',points:1,miniTheory:'N^L',q:'Сколько сообщений длины 2 из {A, B, C}?',answer:['9'],solution:['3² = 9.'],final:'Ответ: 9.'}
+    ],
+    'oge-3':[
+      {type:'input',points:1,miniTheory:'1 ∨ 0 = 1, 1 ∧ 0 = 0',q:'(1 ∧ 0) ∨ (1 ∨ 0) = ?',answer:['1'],solution:['0 ∨ 1 = 1.'],final:'Ответ: 1.'},
+      {type:'input',points:1,miniTheory:'Приоритет ¬ > ∧ > ∨',q:'A=1, B=0. (¬A) ∧ B = ?',answer:['0'],solution:['¬1 = 0; 0 ∧ 0 = 0.'],final:'Ответ: 0.'}
+    ],
+    'oge-4':[
+      {type:'input',points:1,miniTheory:'? — ровно 1 символ',q:'Сколько из (a.txt, abc.txt, ab.txt, 1234.txt) подходят под ???.txt?',answer:['1'],solution:['Только abc.txt.'],final:'Ответ: 1.'}
+    ],
+    'oge-5':[
+      {type:'input',points:1,miniTheory:'$A$1 — абсолют, B2 — относит.',q:'A1=10, B1=5. =A1+B1*2 = ?',answer:['20'],solution:['10 + 5·2 = 20.'],final:'Ответ: 20.'}
+    ],
+    'oge-6':[
+      {type:'input',points:1,miniTheory:'Отслеживайте x после каждого шага',q:'x=0; цикл 5 раз x+=2. x=?',answer:['10'],solution:['0 + 2·5 = 10.'],final:'Ответ: 10.'}
+    ],
+    'oge-7':[
+      {type:'input',points:1,miniTheory:'Сумма = 100%',q:'Секторы: 15%, 35%, Y%. Y = ?',answer:['50'],solution:['100-15-35 = 50.'],final:'Ответ: 50.'}
+    ],
+    'oge-8':[
+      {type:'input',points:1,miniTheory:'|A∪B| = |A|+|B|−|A∩B|',q:'|A|=50, |B|=70, |A∩B|=20. |A∪B|?',answer:['100'],solution:['50+70-20 = 100.'],final:'Ответ: 100.'}
+    ],
+    'oge-9':[
+      {type:'input',points:1,miniTheory:'Сравнивайте суммы рёбер',q:'Пути A→D: 4+2=6, 1+5=6, 3+1=4. Кратчайший?',answer:['4'],solution:['Минимум 4.'],final:'Ответ: 4.'}
+    ],
+    'oge-10':[
+      {type:'input',points:1,miniTheory:'sum(range(1,4)) = 1+2+3',q:'Что выведет: print(sum(range(1, 4)))?',answer:['6'],solution:['1+2+3 = 6.'],final:'Ответ: 6.'}
+    ],
+    'oge-11':[
+      {type:'input',points:1,miniTheory:'* и ? в масках',q:'Сколько из (abc.txt, ab.txt, a.txt, abcd.txt) под *.???.txt?',answer:['2'],solution:['abc.txt и ab.txt... ab.txt имеет длину 2 — нет. Только abc.txt.'],final:'Ответ: 1 (только abc.txt).'}
+    ],
+    'oge-12':[
+      {type:'input',points:1,miniTheory:'Правило умножения',q:'Сколько комбинаций из 2 разных букв алфавита {A,B,C,D}?',answer:['12'],solution:['4·3 = 12.'],final:'Ответ: 12.'}
+    ],
+    'oge-13':[
+      {type:'input',points:1,miniTheory:'t = I / V',q:'2 Мбайт, скорость 512 Кбайт/с. Время в секундах?',answer:['4'],solution:['2 Мбайт = 2048 Кбайт. 2048/512 = 4.'],final:'Ответ: 4.'}
+    ],
+    'oge-14':[
+      {type:'input',points:1,miniTheory:'sum() и len()',q:'Сумма элементов [1, 4, 5, 8]?',answer:['18'],solution:['1+4+5+8 = 18.'],final:'Ответ: 18.'}
+    ],
+    'oge-15':[
+      {type:'input',points:1,miniTheory:'if-else',q:'if x>0 then 1 else 0 при x = -5?',answer:['0'],solution:['-5 не > 0 → 0.'],final:'Ответ: 0.'}
+    ],
+    'ege-1':[
+      {type:'input',points:1,miniTheory:'Суммируйте веса вдоль пути',q:'Путь A-B-C-D: 3, 4, 2. Длина?',answer:['9'],solution:['3+4+2 = 9.'],final:'Ответ: 9.'}
+    ],
+    'ege-2':[
+      {type:'choice',points:1,miniTheory:'A∧B = 1 только при A=1,B=1',q:'Когда A∧B = 1?',options:['A=0,B=0','A=0,B=1','A=1,B=0','A=1,B=1'],answer:3,solution:['Только при 1 и 1.'],final:'Ответ: 4.'}
+    ],
+    'ege-3':[
+      {type:'input',points:1,miniTheory:'SQL: SELECT COUNT(*) + WHERE',q:'Таблица: ИВАНОВ(ИТ,7), ПЕТРОВ(ИТ,3). Сколько человек в ИТ со стажем > 5?',answer:['1'],solution:['Только ИВАНОВ.'],final:'Ответ: 1.'}
+    ],
+    'ege-4':[
+      {type:'input',points:1,miniTheory:'Дерево кодирования',q:'Коды: A=0, B=10. Минимальный код для C?',answer:['11'],solution:['Свободно: 11 (длина 2).'],final:'Ответ: 11.'}
+    ],
+    'ege-5':[
+      {type:'input',points:1,miniTheory:'Дописывание битов = ·2 + бит',q:'N=3 → 11₂ → дописать 1 → ? В десятичной?',answer:['7'],solution:['11₂ = 3, 111₂ = 7.'],final:'Ответ: 7.'}
+    ],
+    'ege-6':[
+      {type:'input',points:1,miniTheory:'Счётчик цикла',q:'for i in range(5): print(i) — сколько итераций?',answer:['5'],solution:['0,1,2,3,4 — 5 итераций.'],final:'Ответ: 5.'}
+    ],
+    'ege-7':[
+      {type:'input',points:1,miniTheory:'V = f·i·k·t',q:'Стерео (2 канала), 8000 Гц, 8 бит, 1 сек. Объём в Кбайт (округлите)?',answer:['16'],solution:['8000·8·2·1 = 128000 бит = 16000 байт ≈ 15,6 ≈ 16.'],final:'Ответ: ≈16.'}
+    ],
+    'ege-8':[
+      {type:'input',points:1,miniTheory:'Правило умножения',q:'Слов длины 3 из {A,B} с повторами:',answer:['8'],solution:['2³ = 8.'],final:'Ответ: 8.'}
+    ],
+    'ege-9':[
+      {type:'input',points:1,miniTheory:'СРЗНАЧ',q:'=СРЗНАЧ(2;4;6;8) = ?',answer:['5'],solution:['(2+4+6+8)/4 = 5.'],final:'Ответ: 5.'}
+    ],
+    'ege-10':[
+      {type:'input',points:1,miniTheory:'Точное слово',q:'«дом домик дом» — сколько раз слово «дом»?',answer:['2'],solution:['2 раза.'],final:'Ответ: 2.'}
+    ],
+    'ege-11':[
+      {type:'input',points:1,miniTheory:'I = K·log₂N',q:'Пароль 8 символов, N = 32. Сколько бит?',answer:['40'],solution:['log₂32 = 5. 8·5 = 40.'],final:'Ответ: 40.'}
+    ],
+    'ege-12':[
+      {type:'input',points:1,miniTheory:'Замена с флагом count',q:'s="aba". После s.replace("a","b") получаем:',answer:['bbb'],solution:['aba → bbb.'],final:'Ответ: bbb.'}
+    ],
+    'ege-13':[
+      {type:'input',points:1,miniTheory:'/24 = 2^8-2 = 254',q:'Сколько адресов хостов в /24?',answer:['254'],solution:['2^8-2 = 254.'],final:'Ответ: 254.'}
+    ],
+    'ege-14':[
+      {type:'input',points:1,miniTheory:'Разложение по степеням',q:'1111₂ в десятичной?',answer:['15'],solution:['8+4+2+1 = 15.'],final:'Ответ: 15.'}
+    ],
+    'ege-15':[
+      {type:'input',points:1,miniTheory:'Тождество → нужно истинное следствие',q:'Наименьшее A: (x≤5)→A при всех x≤5?',answer:['1'],solution:['A = 1.'],final:'Ответ: 1.'}
+    ],
+    'ege-16':[
+      {type:'input',points:1,miniTheory:'F(3)=F(2)+F(1)=2',q:'F(1)=1,F(2)=1,F(n)=F(n-1)+F(n-2). F(5)?',answer:['5'],solution:['2,3,5.'],final:'Ответ: 5.'}
+    ],
+    'ege-17':[
+      {type:'input',points:1,miniTheory:'Кратность 3',q:'[1,2,3,4,5] — сколько элементов кратны 3?',answer:['1'],solution:['Только 3.'],final:'Ответ: 1.'}
+    ],
+    'ege-18':[
+      {type:'input',points:1,miniTheory:'Максимум из сумм путей',q:'Таблица [[1,2,3],[4,5,6],[7,8,9]], путь вправо/вниз, max сумма?',answer:['29'],solution:['1+4+7+8+9 = 29.'],final:'Ответ: 29.'}
+    ],
+    'ege-19':[
+      {type:'input',points:1,miniTheory:'Наименьшее S для победы 1 ходом',q:'Куча S, ходы +2, победа ≥ 20. S для победы за 1 ход?',answer:['18'],solution:['18+2 = 20.'],final:'Ответ: 18.'}
+    ],
+    'ege-20':[
+      {type:'input',points:1,miniTheory:'Позиция после 1 хода — выигрышная у 2-го',q:'+1/+3, победа ≥ 20. Наименьшее S для победы 2-м ходом?',answer:['16'],solution:['16→17→20.'],final:'Ответ: 16.'}
+    ],
+    'ege-21':[
+      {type:'input',points:1,miniTheory:'Гарантированный выигрыш',q:'+1/+3, победа ≥ 20. S для победы 1-м ходом?',answer:['17'],solution:['17+3 = 20.'],final:'Ответ: 17.'}
+    ],
+    'ege-22':[
+      {type:'input',points:1,miniTheory:'Сумма длин последовательных',q:'Задачи A=3с, B=5с, C=2с после A. Общее время?',answer:['7'],solution:['max(3,5)+2 = 7.'],final:'Ответ: 7.'}
+    ],
+    'ege-23':[
+      {type:'input',points:1,miniTheory:'ways[n] = ways[n-1]+ways[n-2]',q:'+1/+2 из 1 в 5. Сколько программ?',answer:['5'],solution:['ways: 1,1,2,3,5.'],final:'Ответ: 5.'}
+    ],
+    'ege-24':[
+      {type:'input',points:1,miniTheory:'Макс. цепочка',q:'«aaabbbbaa» — max длина одинаковых?',answer:['4'],solution:['«bbbb» = 4.'],final:'Ответ: 4.'}
+    ],
+    'ege-25':[
+      {type:'input',points:1,miniTheory:'Перебор делителей до √N',q:'Сколько делителей у 16?',answer:['5'],solution:['1,2,4,8,16 = 5.'],final:'Ответ: 5.'}
+    ],
+    'ege-26':[
+      {type:'input',points:1,miniTheory:'Сортировка + жадность',q:'Файлы [3,5,7,10] ГБ, диск 20 ГБ. Макс файлов?',answer:['3'],solution:['3+5+7 = 15 ≤ 20.'],final:'Ответ: 3.'}
+    ],
+    'ege-27':[
+      {type:'input',points:1,miniTheory:'Трассировка циклов',q:'s=0; for i in range(4): s+=i*i. Результат?',answer:['14'],solution:['0+1+4+9 = 14.'],final:'Ответ: 14.'}
+    ]
+  };
+  Object.keys(extra).forEach(function(tid){
+    var ek=tid.split('-')[0],topic=DATA[ek]?DATA[ek].topics.find(function(t){return t.id===tid}):null;
+    if(topic)topic.tasks=topic.tasks.concat(extra[tid]);
+  });
+})();
+
 /* ============ ACHIEVEMENTS ============ */
 var ACHIEVEMENTS_DEF=[
   {id:'first',title:'Первый шаг',desc:'Решить 1 задание',icon:'🎯',check:function(g){return g.solvedCount>=1}},
@@ -874,14 +1033,7 @@ function isVipUser(u){return isAdminUser(u)}
 function getAdminProfile(){
   try{
     var p=JSON.parse(storage.get('inf_admin_profile')||'{}');
-    return{
-      nick:p.nick||'Admin',
-      avatarType:p.avatarType||'emoji',
-      avatarEmoji:p.avatarEmoji||'👑',
-      avatarImage:p.avatarImage||'',
-      statusText:p.statusText||'Главный администратор',
-      statusPlacement:p.statusPlacement||'header'
-    };
+    return{nick:p.nick||'Admin',avatarType:p.avatarType||'emoji',avatarEmoji:p.avatarEmoji||'👑',avatarImage:p.avatarImage||'',statusText:p.statusText||'Главный администратор',statusPlacement:p.statusPlacement||'header'};
   }catch(e){return{nick:'Admin',avatarType:'emoji',avatarEmoji:'👑',avatarImage:'',statusText:'Главный администратор',statusPlacement:'header'}}
 }
 function saveAdminProfile(p){storage.set('inf_admin_profile',JSON.stringify(p))}
@@ -899,13 +1051,10 @@ function registerUser(un,pw){
 }
 
 function loginUser(un,pw){
-  var raw=String(un||'').trim().toLowerCase();
-  pw=String(pw||'');
+  var raw=String(un||'').trim().toLowerCase(),pw=String(pw||'');
   if((raw==='admin'||raw==='legend')&&(pw==='7777'||pw==='admin777')){
-    setCurrentUser(raw);
-    settings.theme='viproyal';saveSettings();applySettings();
-    launchConfetti();
-    showToast('Вход выполнен','👑');
+    setCurrentUser(raw);settings.theme='viproyal';saveSettings();applySettings();
+    launchConfetti();showToast('Вход выполнен','👑');
     return{ok:true};
   }
   var users=getUsers();
@@ -924,14 +1073,9 @@ function getUserDisplayName(){
 }
 
 function getUserAvatar(){
-  var u=getCurrentUser();
-  if(!u)return null;
-  if(isAdminUser(u)){
-    var ap=getAdminProfile();
-    return (ap.avatarType==='image'&&ap.avatarImage)?ap.avatarImage:null;
-  }
-  var users=getUsers();
-  return (users[u]&&users[u].avatar)?users[u].avatar:null;
+  var u=getCurrentUser();if(!u)return null;
+  if(isAdminUser(u)){var ap=getAdminProfile();return(ap.avatarType==='image'&&ap.avatarImage)?ap.avatarImage:null}
+  var users=getUsers();return(users[u]&&users[u].avatar)?users[u].avatar:null;
 }
 
 function getAvatarHTML(cls){
@@ -950,67 +1094,40 @@ function getGamification(){
   if(isVipUser())return{xp:999999,streak:365,solvedCount:999,mistakes:[],history:{},achievements:[],perfectTopics:[],correctStreak:0,lastActive:today()};
   try{
     var g=JSON.parse(storage.get(getGameKey())||'{}');
-    return{
-      xp:g.xp||0,
-      streak:g.streak||1,
-      lastActive:g.lastActive||null,
-      solvedCount:g.solvedCount||0,
-      correctStreak:g.correctStreak||0,
-      mistakes:Array.isArray(g.mistakes)?g.mistakes:[],
-      history:g.history||{},
-      achievements:Array.isArray(g.achievements)?g.achievements:[],
-      perfectTopics:Array.isArray(g.perfectTopics)?g.perfectTopics:[]
-    };
-  }catch(e){
-    return{xp:0,streak:1,lastActive:null,solvedCount:0,correctStreak:0,mistakes:[],history:{},achievements:[],perfectTopics:[]};
-  }
+    return{xp:g.xp||0,streak:g.streak||1,lastActive:g.lastActive||null,solvedCount:g.solvedCount||0,correctStreak:g.correctStreak||0,mistakes:Array.isArray(g.mistakes)?g.mistakes:[],history:g.history||{},achievements:Array.isArray(g.achievements)?g.achievements:[],perfectTopics:Array.isArray(g.perfectTopics)?g.perfectTopics:[]};
+  }catch(e){return{xp:0,streak:1,lastActive:null,solvedCount:0,correctStreak:0,mistakes:[],history:{},achievements:[],perfectTopics:[]}}
 }
 function saveGamification(g){if(isVipUser())return;storage.set(getGameKey(),JSON.stringify(g))}
 
 function addXP(pts){
   if(isVipUser())return;
   var g=getGamification();g.xp+=pts;saveGamification(g);updateTopHUD();
+  scheduleSync();
 }
 
 function recordActivity(type){
   if(isVipUser())return;
-  var g=getGamification();
-  var t=today();
-  var yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
-
+  var g=getGamification(),t=today(),yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
   if(!g.history[t])g.history[t]={solved:0,errors:0};
   if(type==='solved')g.history[t].solved++;
   else if(type==='error')g.history[t].errors++;
-
   if(g.lastActive!==t){
     if(g.lastActive===yesterday)g.streak=(g.streak||1)+1;
     else if(g.lastActive)g.streak=1;
-    else g.streak=Math.max(g.streak||1,1);
     g.lastActive=t;
   }
-
-  if(type==='solved'){
-    g.solvedCount++;
-    g.correctStreak=(g.correctStreak||0)+1;
-  }else if(type==='error'){
-    g.correctStreak=0;
-  }
-
+  if(type==='solved'){g.solvedCount++;g.correctStreak=(g.correctStreak||0)+1}
+  else if(type==='error')g.correctStreak=0;
   saveGamification(g);
-  checkAchievements();
-  updateTopHUD();
+  checkAchievements();updateTopHUD();
 }
 
 function checkAchievements(){
   if(isVipUser())return;
-  var g=getGamification();
-  var unlocked=[];
+  var g=getGamification(),unlocked=[];
   ACHIEVEMENTS_DEF.forEach(function(a){
     if(g.achievements.indexOf(a.id)>=0)return;
-    if(a.check(g)){
-      g.achievements.push(a.id);
-      unlocked.push(a);
-    }
+    if(a.check(g)){g.achievements.push(a.id);unlocked.push(a)}
   });
   if(unlocked.length){
     saveGamification(g);
@@ -1022,57 +1139,44 @@ function checkAchievements(){
 function addPerfectTopic(tid){
   if(isVipUser())return;
   var g=getGamification();
-  if(g.perfectTopics.indexOf(tid)<0){
-    g.perfectTopics.push(tid);
-    saveGamification(g);
-  }
+  if(g.perfectTopics.indexOf(tid)<0){g.perfectTopics.push(tid);saveGamification(g)}
 }
 
 function recordMistake(taskObj){
   if(isVipUser())return;
   var g=getGamification();
   for(var i=0;i<g.mistakes.length;i++)if(g.mistakes[i].q===taskObj.q)return;
-  g.mistakes.push(taskObj);
-  saveGamification(g);
-  updateTopHUD();
+  g.mistakes.push(taskObj);saveGamification(g);updateTopHUD();
 }
 
 function resolveMistake(q){
   if(isVipUser())return;
   var g=getGamification();
   g.mistakes=g.mistakes.filter(function(m){return m.q!==q});
-  saveGamification(g);
-  updateTopHUD();
+  saveGamification(g);updateTopHUD();
 }
 
 function getAllResults(){try{return JSON.parse(storage.get('inf_results')||'{}')}catch(e){return{}}}
 function saveResults(r){storage.set('inf_results',JSON.stringify(r))}
 function saveAttempt(tid,score,max){
   if(isVipUser())return;
-  var u=getCurrentUser()||'guest';
-  var all=getAllResults();
-  if(!all[u])all[u]={};
-  if(!all[u][tid])all[u][tid]=[];
+  var u=getCurrentUser()||'guest',all=getAllResults();
+  if(!all[u])all[u]={};if(!all[u][tid])all[u][tid]=[];
   all[u][tid].push({score:score,max:max,date:Date.now()});
   saveResults(all);
 }
 function getTopicStats(tid){
   if(isVipUser())return{best:100};
-  var u=getCurrentUser()||'guest';
-  var r=(getAllResults()[u]||{})[tid];
+  var u=getCurrentUser()||'guest',r=(getAllResults()[u]||{})[tid];
   if(!r||!r.length)return null;
-  var best=0;
-  for(var i=0;i<r.length;i++){var v=Math.round(r[i].score/r[i].max*100);if(v>best)best=v}
+  var best=0;for(var i=0;i<r.length;i++){var v=Math.round(r[i].score/r[i].max*100);if(v>best)best=v}
   return{best:best};
 }
 
 function updateTopHUD(){
   var g=getGamification();
   var lvl=isVipUser()?99:Math.max(1,Math.floor(g.xp/150)+1);
-  var lEl=document.getElementById('xpLvlText');
-  var pEl=document.getElementById('xpPointsText');
-  var sEl=document.getElementById('xpStreakText');
-  var mEl=document.getElementById('navMistakes');
+  var lEl=document.getElementById('xpLvlText'),pEl=document.getElementById('xpPointsText'),sEl=document.getElementById('xpStreakText'),mEl=document.getElementById('navMistakes');
   if(lEl)lEl.textContent='Ур. '+lvl;
   if(pEl)pEl.textContent=g.xp+' XP';
   if(sEl)sEl.textContent='🔥 '+g.streak+'д';
@@ -1083,20 +1187,9 @@ function renderUserArea(){
   var area=document.getElementById('userArea');if(!area)return;
   var u=getCurrentUser();
   if(u){
-    var name=getUserDisplayName()||u;
-    var vip=isVipUser(u);
-    var ap=getAdminProfile();
+    var name=getUserDisplayName()||u,vip=isVipUser(u),ap=getAdminProfile();
     var statusBadge=(vip&&ap.statusText&&ap.statusPlacement==='header')?' <span class="custom-status-pill">'+esc(ap.statusText)+'</span>':'';
-    area.innerHTML='<button class="user-btn '+(vip?'vip-glow':'')+'" id="userBtn" type="button">'+
-      getAvatarHTML('user-avatar')+
-      '<span class="user-name '+(vip?'vip-name':'user-display-name')+'">'+esc(name)+'</span>'+
-      statusBadge+
-    '</button>'+
-    '<div class="user-dropdown">'+
-      '<button class="dropdown-item" id="toCabBtn" type="button">👤 Профиль</button>'+
-      '<div class="dropdown-sep"></div>'+
-      '<button class="dropdown-item danger" id="outBtn" type="button">🚪 Выйти</button>'+
-    '</div>';
+    area.innerHTML='<button class="user-btn '+(vip?'vip-glow':'')+'" id="userBtn" type="button">'+getAvatarHTML('user-avatar')+'<span class="user-name '+(vip?'vip-name':'user-display-name')+'">'+esc(name)+'</span>'+statusBadge+'</button><div class="user-dropdown"><button class="dropdown-item" id="toCabBtn" type="button">👤 Профиль</button><div class="dropdown-sep"></div><button class="dropdown-item danger" id="outBtn" type="button">🚪 Выйти</button></div>';
     document.getElementById('userBtn').onclick=function(e){e.stopPropagation();area.classList.toggle('open')};
     document.getElementById('toCabBtn').onclick=function(){area.classList.remove('open');renderCabinet()};
     document.getElementById('outBtn').onclick=function(){area.classList.remove('open');logoutUser();renderUserArea();updateTopHUD();renderHome()};
@@ -1105,10 +1198,102 @@ function renderUserArea(){
     document.getElementById('loginBtn').onclick=function(){renderAuth('login')};
   }
 }
-document.addEventListener('click',function(e){
-  var a=document.getElementById('userArea');
-  if(a&&!a.contains(e.target))a.classList.remove('open');
-});
+document.addEventListener('click',function(e){var a=document.getElementById('userArea');if(a&&!a.contains(e.target))a.classList.remove('open')});
+
+/* ============ CLOUD LEADERBOARD ============ */
+function getPlayerId(){
+  var id=storage.get('inf_player_id');
+  if(!id){id='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);storage.set('inf_player_id',id)}
+  return id;
+}
+
+function getMyCloudEntry(){
+  var u=getCurrentUser(),g=getGamification();
+  var name=u?(getUserDisplayName()||u):'Гость';
+  var isAdmin=isVipUser(u);
+  var avInfo=isAdmin?{emoji:(getAdminProfile().avatarEmoji||'👑')}:{initial:name.charAt(0).toUpperCase()};
+  return{id:getPlayerId(),name:name,xp:g.xp,level:isAdmin?99:Math.max(1,Math.floor(g.xp/150)+1),avatar:avInfo,updated:Date.now()};
+}
+
+var syncTimer=null;
+function scheduleSync(){
+  if(!cloudEnabled()||syncTimer)return;
+  syncTimer=setTimeout(function(){syncTimer=null;doSync()},CLOUD.syncInterval);
+}
+
+async function doSync(){
+  if(!cloudEnabled())return;
+  try{
+    var me=getMyCloudEntry();
+    var gr=await fetch('https://api.jsonbin.io/v3/b/'+CLOUD.binId+'/latest',{headers:{'X-Master-Key':CLOUD.apiKey}});
+    if(!gr.ok)throw new Error('get '+gr.status);
+    var data=await gr.json(),board=data.record||{players:[]};
+    if(!Array.isArray(board.players))board.players=[];
+    var idx=board.players.findIndex(function(p){return p.id===me.id});
+    if(idx>=0){if(board.players[idx].xp<=me.xp)board.players[idx]=me}
+    else board.players.push(me);
+    board.players.sort(function(a,b){return b.xp-a.xp});
+    board.players=board.players.slice(0,200);
+    var pr=await fetch('https://api.jsonbin.io/v3/b/'+CLOUD.binId,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':CLOUD.apiKey},body:JSON.stringify(board)});
+    if(!pr.ok)throw new Error('put '+pr.status);
+    storage.set('inf_cloud_cache',JSON.stringify(board));
+  }catch(e){console.warn('Cloud sync:',e)}
+}
+
+async function fetchLeaderboard(){
+  if(cloudEnabled()){
+    try{
+      var r=await fetch('https://api.jsonbin.io/v3/b/'+CLOUD.binId+'/latest',{headers:{'X-Master-Key':CLOUD.apiKey}});
+      if(r.ok){var d=await r.json(),b=d.record||{players:[]};storage.set('inf_cloud_cache',JSON.stringify(b));return b.players||[]}
+    }catch(e){console.warn('Cloud fetch:',e)}
+    try{var c=JSON.parse(storage.get('inf_cloud_cache')||'{}');if(c.players)return c.players}catch(e){}
+  }
+  return getLocalPlayers();
+}
+
+function getLocalPlayers(){
+  var arr=[],users=getUsers();
+  Object.keys(users).forEach(function(k){
+    try{
+      var g=JSON.parse(storage.get('inf_game_'+k)||'{}');
+      arr.push({id:'local_'+k,name:users[k].name,xp:g.xp||0,level:Math.max(1,Math.floor((g.xp||0)/150)+1),avatar:{initial:users[k].name.charAt(0).toUpperCase()}});
+    }catch(e){}
+  });
+  var gg=JSON.parse(storage.get('inf_game_guest')||'{}');
+  if((gg.xp||0)>0)arr.push({id:'local_guest',name:'Гость',xp:gg.xp||0,level:1,avatar:{initial:'Г'}});
+  return arr;
+}
+
+function buildLBRows(players){
+  var myId=getPlayerId();
+  var rows=players.slice().sort(function(a,b){return b.xp-a.xp}).slice(0,50);
+  var html='<div class="lb-list" data-lb>';
+  if(!rows.length)html+='<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:16px">Пока нет игроков. Решите задание — и появитесь здесь!</p>';
+  rows.forEach(function(p,i){
+    var medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);
+    var cls=i===0?'gold':i===1?'silver':i===2?'bronze':'';
+    var ava=p.avatar&&p.avatar.emoji?esc(p.avatar.emoji):esc((p.avatar&&p.avatar.initial)||(p.name||'?').charAt(0).toUpperCase());
+    var isSelf=p.id===myId;
+    html+='<div class="lb-row'+(isSelf?' is-self':'')+'"><span class="lb-rank '+cls+'">'+medal+'</span><span class="lb-ava">'+ava+'</span><span class="lb-name">'+esc(p.name)+(isSelf?' <small>(вы)</small>':'')+'</span><span class="lb-xp">'+p.xp.toLocaleString('ru-RU')+' XP</span></div>';
+  });
+  html+='</div>';
+  return html;
+}
+
+function renderLeaderboard(){
+  var players=getLocalPlayers();
+  try{var c=JSON.parse(storage.get('inf_cloud_cache')||'{}');if(c.players&&c.players.length)players=c.players}catch(e){}
+  var html=buildLBRows(players);
+  fetchLeaderboard().then(function(fresh){
+    var el=document.querySelector('[data-lb]');
+    if(el&&fresh&&fresh.length){
+      var wrap=document.createElement('div');wrap.innerHTML=buildLBRows(fresh);
+      var nw=wrap.firstChild;nw.setAttribute('data-lb','');
+      el.parentNode.replaceChild(nw,el);
+    }
+  });
+  return html;
+}
 
 /* ============ VIDEO ============ */
 var videoCache={};
@@ -1116,39 +1301,25 @@ function generateVideoBlob(task,taskIndex,onReady){
   var key=taskIndex+'_'+encodeURIComponent(task.q).slice(0,30);
   if(videoCache[key]){onReady(videoCache[key]);return}
   if(typeof document.createElement('canvas').captureStream!=='function'||typeof MediaRecorder==='undefined'){onReady(null);return}
-  var canvas=document.createElement('canvas');
-  canvas.width=640;canvas.height=360;
-  var ctx=canvas.getContext('2d');
-  var stream=canvas.captureStream(20);
-  var mime='';
+  var canvas=document.createElement('canvas');canvas.width=640;canvas.height=360;
+  var ctx=canvas.getContext('2d'),stream=canvas.captureStream(20),mime='';
   if(MediaRecorder.isTypeSupported('video/webm;codecs=vp9'))mime='video/webm;codecs=vp9';
   else if(MediaRecorder.isTypeSupported('video/webm'))mime='video/webm';
-  var rec=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream);
-  var chunks=[];
+  var rec=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream),chunks=[];
   rec.ondataavailable=function(e){if(e.data&&e.data.size>0)chunks.push(e.data)};
-  rec.onstop=function(){
-    var blob=new Blob(chunks,{type:mime||'video/webm'});
-    var url=URL.createObjectURL(blob);
-    videoCache[key]=url;onReady(url);
-  };
+  rec.onstop=function(){var blob=new Blob(chunks,{type:mime||'video/webm'}),url=URL.createObjectURL(blob);videoCache[key]=url;onReady(url)};
   var frames=[{badge:'ВИДЕОРОЛИК · ЗАДАНИЕ №'+(taskIndex+1),title:task.q,body:'Разбираем шаг за шагом.'}];
-  var sol=(task.solution||[]);
+  var sol=task.solution||[];
   for(var i=0;i<sol.length;i++)frames.push({badge:'ШАГ '+(i+1)+' ИЗ '+sol.length,title:task.q,body:sol[i]});
   frames.push({badge:'ИТОГ',title:task.q,body:task.final||'Готово.'});
-
   function wrap(c,t,x,y,maxW,lh){
     var w=String(t||'').split(' '),line='',cy=y;
-    for(var i=0;i<w.length;i++){
-      var test=line+(line?' ':'')+w[i];
-      if(c.measureText(test).width>maxW&&line){c.fillText(line,x,cy);line=w[i];cy+=lh}
-      else line=test;
-    }
+    for(var i=0;i<w.length;i++){var test=line+(line?' ':'')+w[i];if(c.measureText(test).width>maxW&&line){c.fillText(line,x,cy);line=w[i];cy+=lh}else line=test}
     if(line)c.fillText(line,x,cy);
   }
   function draw(idx){
     var fr=frames[Math.min(idx,frames.length-1)];
-    var gr=ctx.createLinearGradient(0,0,640,360);
-    gr.addColorStop(0,'#070d24');gr.addColorStop(1,'#191138');
+    var gr=ctx.createLinearGradient(0,0,640,360);gr.addColorStop(0,'#070d24');gr.addColorStop(1,'#191138');
     ctx.fillStyle=gr;ctx.fillRect(0,0,640,360);
     ctx.strokeStyle='#06b6d4';ctx.lineWidth=3;ctx.strokeRect(18,18,604,324);
     ctx.fillStyle='#06b6d4';ctx.font='bold 16px sans-serif';ctx.fillText(fr.badge,38,56);
@@ -1158,35 +1329,19 @@ function generateVideoBlob(task,taskIndex,onReady){
     ctx.fillStyle='#f59e0b';ctx.fillRect(38,305,Math.round(564*((idx+1)/frames.length)),8);
   }
   var cur=0;draw(0);rec.start();
-  var iv=setInterval(function(){
-    cur++;
-    if(cur<frames.length)draw(cur);
-    else{clearInterval(iv);setTimeout(function(){try{rec.stop()}catch(e){}},250)}
-  },1400);
+  var iv=setInterval(function(){cur++;if(cur<frames.length)draw(cur);else{clearInterval(iv);setTimeout(function(){try{rec.stop()}catch(e){}},250)}},1400);
 }
 
 function toggleVideoClip(card,task,idx){
-  var ex=card.querySelector('.video-box');
-  if(ex){ex.parentNode.removeChild(ex);return}
-  var box=document.createElement('div');
-  box.className='video-box';
-  box.innerHTML='<div class="video-head"><b>🎬 Видеоразбор №'+(idx+1)+'</b><button type="button" class="drawer-close v-close" style="width:28px;height:28px;font-size:16px">×</button></div>'+
-    '<div class="video-player-wrap">'+
-      '<div class="v-load" style="padding:18px;text-align:center;color:var(--warning);font-weight:700">⏳ Формируем видео...</div>'+
-      '<video controls autoplay playsinline style="display:none"></video>'+
-      '<div class="video-status-line"><span>Стандартный плеер.</span><label class="btn btn-ghost" style="padding:6px 10px;font-size:12px;cursor:pointer">📂 Свой .mp4<input type="file" accept="video/*" class="v-file" style="display:none"></label></div>'+
-    '</div>';
+  var ex=card.querySelector('.video-box');if(ex){ex.parentNode.removeChild(ex);return}
+  var box=document.createElement('div');box.className='video-box';
+  box.innerHTML='<div class="video-head"><b>🎬 Видеоразбор №'+(idx+1)+'</b><button type="button" class="drawer-close v-close" style="width:28px;height:28px;font-size:16px">×</button></div><div class="video-player-wrap"><div class="v-load" style="padding:18px;text-align:center;color:var(--warning);font-weight:700">⏳ Формируем видео...</div><video controls autoplay playsinline style="display:none"></video><div class="video-status-line"><span>Стандартный плеер.</span><label class="btn btn-ghost" style="padding:6px 10px;font-size:12px;cursor:pointer">📂 Свой .mp4<input type="file" accept="video/*" class="v-file" style="display:none"></label></div></div>';
   card.appendChild(box);
   box.querySelector('.v-close').onclick=function(){if(box.parentNode)box.parentNode.removeChild(box)};
   var vEl=box.querySelector('video'),loadEl=box.querySelector('.v-load'),fi=box.querySelector('.v-file');
-  fi.onchange=function(){
-    var f=fi.files[0];if(!f)return;
-    var u=URL.createObjectURL(f);
-    loadEl.style.display='none';vEl.style.display='block';vEl.src=u;vEl.play();
-  };
+  fi.onchange=function(){var f=fi.files[0];if(!f)return;var u=URL.createObjectURL(f);loadEl.style.display='none';vEl.style.display='block';vEl.src=u;vEl.play()};
   generateVideoBlob(task,idx,function(url){
-    if(!box.parentNode)return;
-    loadEl.style.display='none';
+    if(!box.parentNode)return;loadEl.style.display='none';
     if(url){vEl.style.display='block';vEl.src=url;vEl.play().catch(function(){})}
     else{loadEl.style.display='block';loadEl.innerHTML='<b>Разбор:</b><br>'+esc((task.solution||[]).join(' · '))+'<br><b>'+esc(task.final||'')+'</b>'}
   });
@@ -1197,50 +1352,19 @@ var app=document.getElementById('app');
 var crumbs=document.getElementById('crumbs');
 var currentTopic=null,attempt=null;
 
-function setApp(html){
-  app.classList.remove('app-enter');
-  app.innerHTML=html;
-  void app.offsetWidth;
-  app.classList.add('app-enter');
-}
+function setApp(html){app.classList.remove('app-enter');app.innerHTML=html;void app.offsetWidth;app.classList.add('app-enter')}
 
-function setActiveNav(key){
-  var p=document.querySelectorAll('.nav-pill');
-  for(var i=0;i<p.length;i++)p[i].classList.toggle('active',p[i].getAttribute('data-nav')===key);
-}
+function setActiveNav(key){var p=document.querySelectorAll('.nav-pill');for(var i=0;i<p.length;i++)p[i].classList.toggle('active',p[i].getAttribute('data-nav')===key)}
 
 function renderHome(){
-  setActiveNav('home');
-  crumbs.innerHTML='';
-  var u=getCurrentUser();
-  var name=getUserDisplayName();
-  var vip=isVipUser(u);
-  var ap=getAdminProfile();
+  setActiveNav('home');crumbs.innerHTML='';
+  var u=getCurrentUser(),name=getUserDisplayName(),vip=isVipUser(u),ap=getAdminProfile();
   var status=(vip&&ap.statusText&&ap.statusPlacement==='home')?'<div style="margin-bottom:10px"><span class="custom-status-pill">📌 '+esc(ap.statusText)+'</span></div>':'';
   var greet=name?(vip?'Привет, <span class="vip-name"><span class="vip-crown">👑</span>'+esc(name)+'</span>! <span class="vip-badge">АДМИН</span>':'Привет, <span class="user-display-name">'+esc(name)+'</span>!'):'Тренажёр <span class="accent">ОГЭ и ЕГЭ 2027</span>';
-
-  var html='<section class="hero '+(vip?'vip-glow':'')+'"><div class="hero-inner"><div class="hero-text">'+status+
-    '<span class="eyebrow">Теория + Практика · Видео · Достижения · Топ</span>'+
-    '<h1>'+greet+'</h1>'+
-    '<p>Удобный тренажёр: отдельная теория, практика с проверкой и разбором, видеоразборы, достижения и прогресс.</p>'+
-    '<div class="hero-actions">'+
-      '<button class="btn btn-primary" id="heroOge" type="button">ОГЭ</button>'+
-      '<button class="btn btn-ghost" id="heroEge" type="button">ЕГЭ</button>'+
-      '<button class="btn btn-ghost" id="heroCalcLab" type="button">🧮 Калькулятор</button>'+
-    '</div></div><div class="hero-ill">'+SVG.hero()+'</div></div></section>';
-
-  html+='<div class="bento">'+
-    '<div class="b-card b-wide b-exam" data-exam="oge"><span class="b-badge">ОГЭ 2027</span><h2>ОГЭ по информатике</h2><p>'+DATA.oge.topics.length+' тем · теория + практика</p></div>'+
-    '<div class="b-card b-wide b-exam" data-exam="ege"><span class="b-badge">ЕГЭ 2027</span><h2>ЕГЭ по информатике</h2><p>'+DATA.ege.topics.length+' тем · теория + практика</p></div>'+
-    '<div class="b-card b-stat"><div class="stat-n">'+(DATA.oge.topics.length+DATA.ege.topics.length)+'</div><div class="stat-l">Тем</div></div>'+
-    '<div class="b-card b-stat"><div class="stat-n">2027</div><div class="stat-l">Спецификация</div></div>'+
-    '<div class="b-card b-mode" id="cardCalcLab"><div class="b-mode-top"><span class="b-mode-ico">🧮</span><span>→</span></div><h4>Калькулятор и Лаб</h4><p>Перевод СС и формулы.</p></div>'+
-    '<div class="b-card b-mode" id="cardCab"><div class="b-mode-top"><span class="b-mode-ico">👤</span><span>→</span></div><h4>Профиль</h4><p>Достижения и прогресс.</p></div>'+
-  '</div>';
-
+  var html='<section class="hero '+(vip?'vip-glow':'')+'"><div class="hero-inner"><div class="hero-text">'+status+'<span class="eyebrow">Теория + Практика · Видео · Достижения · Топ</span><h1>'+greet+'</h1><p>Удобный тренажёр: отдельная теория, практика с проверкой и разбором, видеоразборы, достижения и прогресс.</p><div class="hero-actions"><button class="btn btn-primary" id="heroOge" type="button">ОГЭ</button><button class="btn btn-ghost" id="heroEge" type="button">ЕГЭ</button><button class="btn btn-ghost" id="heroCalcLab" type="button">🧮 Калькулятор</button></div></div><div class="hero-ill">'+SVG.hero()+'</div></div></section>';
+  html+='<div class="bento"><div class="b-card b-wide b-exam" data-exam="oge"><span class="b-badge">ОГЭ 2027</span><h2>ОГЭ по информатике</h2><p>'+DATA.oge.topics.length+' тем · теория + практика</p></div><div class="b-card b-wide b-exam" data-exam="ege"><span class="b-badge">ЕГЭ 2027</span><h2>ЕГЭ по информатике</h2><p>'+DATA.ege.topics.length+' тем · теория + практика</p></div><div class="b-card b-stat"><div class="stat-n">'+(DATA.oge.topics.length+DATA.ege.topics.length)+'</div><div class="stat-l">Тем</div></div><div class="b-card b-stat"><div class="stat-n">2027</div><div class="stat-l">Спецификация</div></div><div class="b-card b-mode" id="cardCalcLab"><div class="b-mode-top"><span class="b-mode-ico">🧮</span><span>→</span></div><h4>Калькулятор и Лаб</h4><p>Перевод СС и формулы.</p></div><div class="b-card b-mode" id="cardCab"><div class="b-mode-top"><span class="b-mode-ico">👤</span><span>→</span></div><h4>Профиль</h4><p>Достижения и прогресс.</p></div></div>';
   setApp(html);
-  var ec=app.querySelectorAll('.b-exam');
-  for(var i=0;i<ec.length;i++)(function(c){c.onclick=function(){renderTopics(c.getAttribute('data-exam'))}})(ec[i]);
+  var ec=app.querySelectorAll('.b-exam');for(var i=0;i<ec.length;i++)(function(c){c.onclick=function(){renderTopics(c.getAttribute('data-exam'))}})(ec[i]);
   document.getElementById('heroOge').onclick=function(){renderTopics('oge')};
   document.getElementById('heroEge').onclick=function(){renderTopics('ege')};
   document.getElementById('heroCalcLab').onclick=function(){openCalcLab('calc')};
@@ -1253,79 +1377,57 @@ function renderTopics(examKey){
   var ex=DATA[examKey];
   crumbs.innerHTML='<span class="crumb-link" id="cHome">Главная</span><span>/</span><b>'+esc(ex.title)+'</b>';
   document.getElementById('cHome').onclick=renderHome;
-
-  var html='<h1 class="page-title">'+esc(ex.title)+'</h1><p class="lead">'+esc(ex.subtitle)+'</p>'
-    +'<div class="filter-bar"><div class="search-box"><input type="text" id="topicSearch" placeholder="Поиск по номеру или названию..."></div></div>'
-    +'<div class="topic-grid" id="topicGrid">';
+  var html='<h1 class="page-title">'+esc(ex.title)+'</h1><p class="lead">'+esc(ex.subtitle)+'</p><div class="filter-bar"><div class="search-box"><input type="text" id="topicSearch" placeholder="Поиск по номеру или названию..."></div></div><div class="topic-grid" id="topicGrid">';
   for(var i=0;i<ex.topics.length;i++){
     var t=ex.topics[i],st=getTopicStats(t.id);
-    html+='<button class="topic-card" data-topic-id="'+esc(t.id)+'" type="button">'
-      +'<span class="topic-num-badge">'+esc(t.num)+'</span>'
-      +'<span class="topic-body"><b>'+esc(t.title)+'</b>'
-      +'<small>'+t.tasks.length+' '+plural(t.tasks.length,'задание','задания','заданий')+'</small></span>'
-      +(st?'<span class="topic-best">'+st.best+'%</span>':'')
-      +'</button>';
+    html+='<button class="topic-card" data-topic-id="'+esc(t.id)+'" type="button"><span class="topic-num-badge">'+esc(t.num)+'</span><span class="topic-body"><b>'+esc(t.title)+'</b><small>'+t.tasks.length+' '+plural(t.tasks.length,'задание','задания','заданий')+'</small></span>'+(st?'<span class="topic-best">'+st.best+'%</span>':'')+'</button>';
   }
   html+='</div>';
   setApp(html);
-  var cards=app.querySelectorAll('.topic-card');
-  for(var j=0;j<cards.length;j++)(function(c){c.onclick=function(){openTopic(examKey,c.getAttribute('data-topic-id'))}})(cards[j]);
+  var grid=document.getElementById('topicGrid');
+  if(grid)grid.addEventListener('click',function(e){var c=e.target.closest('.topic-card');if(c)openTopic(examKey,c.getAttribute('data-topic-id'))});
   var s=document.getElementById('topicSearch');
-  if(s)s.oninput=function(){
-    var q=s.value.toLowerCase().trim();
-    var cc=app.querySelectorAll('.topic-card');
-    for(var i=0;i<cc.length;i++)cc[i].style.display=(!q||cc[i].textContent.toLowerCase().indexOf(q)>=0)?'':'none';
-  };
+  if(s){var tmr=null;s.oninput=function(){clearTimeout(tmr);tmr=setTimeout(function(){var q=s.value.toLowerCase().trim(),cc=app.querySelectorAll('.topic-card');for(var i=0;i<cc.length;i++)cc[i].style.display=(!q||cc[i].textContent.toLowerCase().indexOf(q)>=0)?'':'none'},120)}}
+}
+
+function renderTheory(topic){
+  if(!topic.theory||!topic.theory.length)return '<p style="color:var(--text-muted)">Теория скоро появится.</p>';
+  var html='';
+  topic.theory.forEach(function(th){
+    html+='<div class="theory-block"><h4>'+esc(th.h)+'</h4>';
+    if(th.p)html+='<p>'+th.p+'</p>';
+    if(th.bullets&&th.bullets.length){html+='<ul class="theory-bullets">';th.bullets.forEach(function(b){html+='<li>'+b+'</li>'});html+='</ul>'}
+    if(th.f)html+='<span class="formula">'+th.f+'</span>';
+    if(th.example&&th.example.steps){html+='<div class="theory-example"><div class="theory-example-head">'+esc(th.example.title||'Пример')+'</div><ol>';th.example.steps.forEach(function(s){html+='<li>'+s+'</li>'});html+='</ol></div>'}
+    if(th.mistakes&&th.mistakes.length){html+='<div class="theory-mistakes"><div class="theory-mistakes-head">Частые ошибки</div><ul>';th.mistakes.forEach(function(m){html+='<li>'+m+'</li>'});html+='</ul></div>'}
+    html+='</div>';
+  });
+  return html;
 }
 
 function openTopic(examKey,topicId){
   var ex=DATA[examKey],topic=null;
   for(var i=0;i<ex.topics.length;i++)if(ex.topics[i].id===topicId){topic=ex.topics[i];break}
   if(!topic){showToast('Тема не найдена','⚠️');return}
-  currentTopic={exam:examKey,topic:topic};
-  attempt={checked:{},score:0,max:0};
+  currentTopic={exam:examKey,topic:topic};attempt={checked:{},score:0,max:0};
   for(var k=0;k<topic.tasks.length;k++)attempt.max+=topic.tasks[k].points;
 
   setActiveNav(examKey);
-  crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span> <span>/</span> '
-    +'<span class="crumb-link" id="cH2">'+esc(ex.title)+'</span> <span>/</span> '
-    +'<b>№'+topic.num+' · '+esc(topic.title)+'</b>';
+  crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span> <span>/</span> <span class="crumb-link" id="cH2">'+esc(ex.title)+'</span> <span>/</span> <b>№'+topic.num+' · '+esc(topic.title)+'</b>';
   document.getElementById('cH1').onclick=renderHome;
   document.getElementById('cH2').onclick=function(){renderTopics(examKey)};
 
-  var theoryHtml='';
-  for(var i=0;i<(topic.theory||[]).length;i++){
-    var th=topic.theory[i];
-    theoryHtml+='<div class="theory-block"><h4>'+esc(th.h)+'</h4><p>'+th.p+'</p>';
-    if(th.f)theoryHtml+='<span class="formula">'+th.f+'</span>';
-    theoryHtml+='</div>';
-  }
-
+  var theoryHtml=renderTheory(topic);
   var html='<h1 class="page-title">№'+topic.num+' · '+esc(topic.title)+'</h1>'
-    +'<div class="tabs">'
-    +'<button class="tab active" data-tab="theory">📖 Теория</button>'
-    +'<button class="tab" data-tab="practice">✏️ Практика ('+topic.tasks.length+')</button>'
-    +'</div>'
-    +'<div id="theoryPane">'
-      +'<div class="theory-hero"><div class="theory-hero-icon">📘</div><div class="theory-hero-text"><b>Теория по теме</b><small>Изучите формулы и правила перед практикой</small></div></div>'
-      +theoryHtml
-      +'<div class="actions"><button class="btn btn-primary" id="goPractice" type="button">Перейти к практике →</button><button class="btn btn-ghost" id="backBtn1" type="button">← Назад</button></div>'
-    +'</div>'
-    +'<div id="practicePane" style="display:none">'
-      +'<div class="progress-row"><span style="font-size:13px;font-weight:700;color:var(--text-muted)">Прогресс:</span><div class="progress"><div class="progress-bar" id="progressBar"></div></div><span class="progress-text" id="progressText">0 / '+topic.tasks.length+'</span></div>'
-      +'<div id="tasksContainer"></div>'
-      +'<div class="actions"><button class="btn btn-ghost" id="backBtn2" type="button">← Назад к темам</button></div>'
-    +'</div>';
-
+    +'<div class="tabs"><button class="tab active" data-tab="theory">📖 Теория</button><button class="tab" data-tab="practice">✏️ Практика ('+topic.tasks.length+')</button></div>'
+    +'<div id="theoryPane"><div class="theory-hero"><div class="theory-hero-icon">📘</div><div class="theory-hero-text"><b>Теория по теме</b><small>Изучите формулы и правила перед практикой</small></div></div>'+theoryHtml+'<div class="actions"><button class="btn btn-primary" id="goPractice" type="button">Перейти к практике →</button><button class="btn btn-ghost" id="backBtn1" type="button">← Назад</button></div></div>'
+    +'<div id="practicePane" style="display:none"><div class="progress-row"><span style="font-size:13px;font-weight:700;color:var(--text-muted)">Прогресс:</span><div class="progress"><div class="progress-bar" id="progressBar"></div></div><span class="progress-text" id="progressText">0 / '+topic.tasks.length+'</span></div><div id="tasksContainer"></div><div class="actions"><button class="btn btn-ghost" id="backBtn2" type="button">← Назад к темам</button></div></div>';
   setApp(html);
-
   document.getElementById('backBtn1').onclick=function(){renderTopics(examKey)};
   document.getElementById('backBtn2').onclick=function(){renderTopics(examKey)};
   document.getElementById('goPractice').onclick=function(){switchTab('practice')};
-
   var tabs=app.querySelectorAll('.tab');
   for(var t=0;t<tabs.length;t++)(function(tb){tb.onclick=function(){switchTab(tb.getAttribute('data-tab'))}})(tabs[t]);
-
   var cont=document.getElementById('tasksContainer');
   for(var k2=0;k2<topic.tasks.length;k2++)cont.appendChild(buildTaskCard(topic.tasks[k2],k2,topic.num));
 }
@@ -1340,70 +1442,33 @@ function switchTab(name){
 }
 
 function buildTaskCard(task,idx,topicNum){
-  var card=document.createElement('div');
-  card.className='task';
-  var head='<div class="task-head">'
-    +'<span class="task-num">'+(idx+1)+'</span>'
-    +'<span class="task-type-tag">'+({choice:'Одиночный выбор',input:'Краткий ответ',multi:'Множественный выбор',order:'Порядок'})[task.type]+'</span>'
-    +(task.tag2027?'<span class="task-2027-tag">2027</span>':'')
-    +'<span class="task-pts">'+task.points+' '+plural(task.points,'балл','балла','баллов')+'</span>'
-    +'</div>';
-
+  var card=document.createElement('div');card.className='task';
+  var head='<div class="task-head"><span class="task-num">'+(idx+1)+'</span><span class="task-type-tag">'+({choice:'Одиночный выбор',input:'Краткий ответ',multi:'Множественный выбор',order:'Порядок'})[task.type]+'</span>'+(task.tag2027?'<span class="task-2027-tag">2027</span>':'')+'<span class="task-pts">'+task.points+' '+plural(task.points,'балл','балла','баллов')+'</span></div>';
   var body='<p class="task-q">'+esc(task.q)+'</p>';
   if(task.visual)body+='<div class="task-visual">'+task.visual+'</div>';
   if(task.code)body+='<pre class="code">'+esc(task.code)+'</pre>';
-
-  if(task.miniTheory){
-    body+='<button class="hint-toggle" type="button">💡 Показать подсказку</button>';
-    body+='<div class="task-mini-theory">'+task.miniTheory+'</div>';
-  }
-
+  if(task.miniTheory){body+='<button class="hint-toggle" type="button">💡 Показать подсказку</button><div class="task-mini-theory">'+task.miniTheory+'</div>'}
   if(task.type==='choice'||task.type==='multi'){
     body+='<div class="options">';
-    for(var i=0;i<task.options.length;i++){
-      body+='<button class="opt" data-opt="'+i+'" type="button"><span class="opt-key">'+String.fromCharCode(65+i)+'</span><span>'+esc(task.options[i])+'</span></button>';
-    }
+    for(var i=0;i<task.options.length;i++)body+='<button class="opt" data-opt="'+i+'" type="button"><span class="opt-key">'+String.fromCharCode(65+i)+'</span><span>'+esc(task.options[i])+'</span></button>';
     body+='</div>';
-  }else if(task.type==='input'){
-    body+='<input type="text" class="answer-input" placeholder="Введите ответ...">';
-  }else if(task.type==='order'){
+  }else if(task.type==='input'){body+='<input type="text" class="answer-input" placeholder="Введите ответ...">'}
+  else if(task.type==='order'){
     body+='<div class="order-list">';
-    for(var i=0;i<task.items.length;i++){
-      body+='<div class="order-item" data-orig="'+i+'"><span class="order-pos">'+(i+1)+'</span><span class="order-text">'+esc(task.items[i])+'</span>'
-        +'<span class="order-btns"><button class="order-btn" data-dir="-1" type="button">↑</button><button class="order-btn" data-dir="1" type="button">↓</button></span></div>';
-    }
+    for(var i=0;i<task.items.length;i++)body+='<div class="order-item" data-orig="'+i+'"><span class="order-pos">'+(i+1)+'</span><span class="order-text">'+esc(task.items[i])+'</span><span class="order-btns"><button class="order-btn" data-dir="-1" type="button">↑</button><button class="order-btn" data-dir="1" type="button">↓</button></span></div>';
     body+='</div>';
   }
-
-  body+='<div class="task-foot">'
-    +'<button class="btn btn-check" type="button">✓ Проверить</button>'
-    +'<button class="btn btn-video" type="button">🎬 Видео</button>'
-    +'<button class="btn btn-ask-ai" type="button">🤖 Спросить бота</button>'
-    +'<span class="feedback"></span></div>';
-  body+='<div class="task-solution-slot"></div>';
-
+  body+='<div class="task-foot"><button class="btn btn-check" type="button">✓ Проверить</button><button class="btn btn-video" type="button">🎬 Видео</button><button class="btn btn-ask-ai" type="button">🤖 Спросить бота</button><span class="feedback"></span></div><div class="task-solution-slot"></div>';
   card.innerHTML=head+body;
 
-  // Hint toggle
   var ht=card.querySelector('.hint-toggle');
-  if(ht)ht.onclick=function(){
-    var mt=card.querySelector('.task-mini-theory');
-    var open=mt.classList.toggle('open');
-    ht.textContent=open?'🙈 Скрыть подсказку':'💡 Показать подсказку';
-  };
+  if(ht)ht.onclick=function(){var mt=card.querySelector('.task-mini-theory'),open=mt.classList.toggle('open');ht.textContent=open?'🙈 Скрыть подсказку':'💡 Показать подсказку'};
 
-  var selected=[];
-  var opts=card.querySelectorAll('.opt');
+  var selected=[],opts=card.querySelectorAll('.opt');
   for(var i=0;i<opts.length;i++)(function(o){
     o.onclick=function(){
-      if(task.type==='choice'){
-        for(var j=0;j<opts.length;j++)opts[j].classList.remove('selected');
-        o.classList.add('selected');selected=[parseInt(o.getAttribute('data-opt'),10)];
-      }else{
-        o.classList.toggle('selected');
-        var s=[];for(var j=0;j<opts.length;j++)if(opts[j].classList.contains('selected'))s.push(parseInt(opts[j].getAttribute('data-opt'),10));
-        selected=s;
-      }
+      if(task.type==='choice'){for(var j=0;j<opts.length;j++)opts[j].classList.remove('selected');o.classList.add('selected');selected=[parseInt(o.getAttribute('data-opt'),10)]}
+      else{o.classList.toggle('selected');var s=[];for(var j=0;j<opts.length;j++)if(opts[j].classList.contains('selected'))s.push(parseInt(opts[j].getAttribute('data-opt'),10));selected=s}
     };
   })(opts[i]);
 
@@ -1412,107 +1477,61 @@ function buildTaskCard(task,idx,topicNum){
     var bs=o.querySelectorAll('.order-btn');
     for(var bi=0;bi<bs.length;bi++)(function(b){
       b.onclick=function(){
-        var dir=parseInt(b.getAttribute('data-dir'),10);
-        var list=o.parentNode;
-        var items=Array.prototype.slice.call(list.children);
-        var i=items.indexOf(o),ni=i+dir;
+        var dir=parseInt(b.getAttribute('data-dir'),10),list=o.parentNode,items=Array.prototype.slice.call(list.children),i=items.indexOf(o),ni=i+dir;
         if(ni<0||ni>=items.length)return;
-        if(dir<0)list.insertBefore(o,items[ni]);
-        else list.insertBefore(items[ni],o);
+        if(dir<0)list.insertBefore(o,items[ni]);else list.insertBefore(items[ni],o);
         var all=list.querySelectorAll('.order-item');
         for(var j=0;j<all.length;j++)all[j].querySelector('.order-pos').textContent=(j+1);
       };
     })(bs[bi]);
   })(ois[i]);
 
-  var checkBtn=card.querySelector('.btn-check');
-  var fb=card.querySelector('.feedback');
-  var slot=card.querySelector('.task-solution-slot');
-  var checked=false;
+  var checkBtn=card.querySelector('.btn-check'),fb=card.querySelector('.feedback'),slot=card.querySelector('.task-solution-slot'),checked=false;
 
   checkBtn.onclick=function(){
-    if(checked){
-      showToast('Задание уже проверено','ℹ️');
-      return;
-    }
+    if(checked){showToast('Задание уже проверено','ℹ️');return}
     checked=true;
     var ok=false;
     if(task.type==='choice'){
       ok=(selected.length===1&&selected[0]===task.answer);
-      for(var j=0;j<opts.length;j++){
-        var v=parseInt(opts[j].getAttribute('data-opt'),10);
-        if(v===task.answer)opts[j].classList.add('is-correct');
-        else if(opts[j].classList.contains('selected'))opts[j].classList.add('is-wrong');
-      }
+      for(var j=0;j<opts.length;j++){var v=parseInt(opts[j].getAttribute('data-opt'),10);if(v===task.answer)opts[j].classList.add('is-correct');else if(opts[j].classList.contains('selected'))opts[j].classList.add('is-wrong')}
     }else if(task.type==='multi'){
-      var a=selected.slice().sort().join(','),b=task.answer.slice().sort().join(',');
-      ok=(a===b);
-      for(var j=0;j<opts.length;j++){
-        var v=parseInt(opts[j].getAttribute('data-opt'),10);
-        if(task.answer.indexOf(v)>=0)opts[j].classList.add('is-correct');
-        else if(opts[j].classList.contains('selected'))opts[j].classList.add('is-wrong');
-      }
+      var a=selected.slice().sort().join(','),b=task.answer.slice().sort().join(',');ok=(a===b);
+      for(var j=0;j<opts.length;j++){var v=parseInt(opts[j].getAttribute('data-opt'),10);if(task.answer.indexOf(v)>=0)opts[j].classList.add('is-correct');else if(opts[j].classList.contains('selected'))opts[j].classList.add('is-wrong')}
     }else if(task.type==='input'){
-      var inp=card.querySelector('.answer-input');
-      var val=normalize(inp.value);
+      var inp=card.querySelector('.answer-input'),val=normalize(inp.value);
       for(var i=0;i<task.answer.length;i++)if(normalize(task.answer[i])===val){ok=true;break}
-      inp.classList.toggle('is-correct',ok);inp.classList.toggle('is-wrong',!ok);
-      inp.readOnly=true;
+      inp.classList.toggle('is-correct',ok);inp.classList.toggle('is-wrong',!ok);inp.readOnly=true;
     }else if(task.type==='order'){
-      var cur=[];
-      var items=card.querySelectorAll('.order-item');
+      var cur=[],items=card.querySelectorAll('.order-item');
       for(var i=0;i<items.length;i++)cur.push(parseInt(items[i].getAttribute('data-orig'),10));
       ok=(cur.join(',')===task.answer.join(','));
       for(var i=0;i<items.length;i++)items[i].classList.toggle('is-correct',ok);
     }
-
     checkBtn.disabled=true;checkBtn.style.opacity=.5;
-
     if(ok){
-      fb.className='feedback ok';fb.textContent='✓ Верно!';
-      playSound('correct');
+      fb.className='feedback ok';fb.textContent='✓ Верно!';playSound('correct');
+      card.classList.add('solved');
       if(!attempt.checked[idx]){
-        attempt.checked[idx]=true;
-        attempt.score+=task.points;
-        addXP(task.points*10);
-        recordActivity('solved');
+        attempt.checked[idx]=true;attempt.score+=task.points;addXP(task.points*10);recordActivity('solved');
         if(Object.keys(attempt.checked).length===currentTopic.topic.tasks.length){
-          if(attempt.score===attempt.max){
-            addPerfectTopic(currentTopic.topic.id);
-            showToast('Идеально! +50 XP','⭐');
-            addXP(50);
-          }
+          if(attempt.score===attempt.max){addPerfectTopic(currentTopic.topic.id);showToast('Идеально! +50 XP','⭐');addXP(50)}
           saveAttempt(currentTopic.topic.id,attempt.score,attempt.max);
-          checkAchievements();
-          launchConfetti();
-          showToast('Тема завершена!','🎉');
+          checkAchievements();launchConfetti();showToast('Тема завершена!','🎉');
         }
       }
       resolveMistake(task.q);
     }else{
-      fb.className='feedback err';fb.textContent='✗ Неверно. Смотрите решение ниже.';
-      playSound('wrong');
+      fb.className='feedback err';fb.textContent='✗ Неверно. Смотрите решение ниже.';playSound('wrong');
       recordActivity('error');
       recordMistake({q:task.q,exam:currentTopic.exam,topic:currentTopic.topic.id,topicNum:topicNum});
     }
     updateProgress();
-
-    // Show solution only after check
-    slot.innerHTML='<div class="solution">'
-      +'<div class="solution-head">📖 Пошаговое решение</div>'
-      +'<div class="solution-body">'
-      +(task.solution||[]).map(function(s,i){return '<div class="solution-step"><span class="solution-step-num">'+(i+1)+'</span><div>'+esc(s)+'</div></div>'}).join('')
-      +'<div class="solution-final">'+esc(task.final||'')+'</div>'
-      +'</div></div>';
+    slot.innerHTML='<div class="solution"><div class="solution-head">📖 Пошаговое решение</div><div class="solution-body">'+(task.solution||[]).map(function(s,i){return '<div class="solution-step"><span class="solution-step-num">'+(i+1)+'</span><div>'+esc(s)+'</div></div>'}).join('')+'<div class="solution-final">'+esc(task.final||'')+'</div></div></div>';
   };
 
   card.querySelector('.btn-video').onclick=function(){toggleVideoClip(card,task,idx)};
-  card.querySelector('.btn-ask-ai').onclick=function(){
-    openChat();
-    var inp=document.getElementById('chatInput');
-    if(inp){inp.value='Объясни: '+task.q;inp.focus()}
-  };
-
+  card.querySelector('.btn-ask-ai').onclick=function(){openChat();var inp=document.getElementById('chatInput');if(inp){inp.value='Объясни: '+task.q;inp.focus()}};
   return card;
 }
 
@@ -1526,221 +1545,75 @@ function updateProgress(){
 
 /* ============ CABINET ============ */
 function renderCabinet(){
-  var u=getCurrentUser();
-  if(!u){renderAuth('login');return}
+  var u=getCurrentUser();if(!u){renderAuth('login');return}
   crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span><span>/</span><b>Профиль</b>';
   document.getElementById('cH1').onclick=renderHome;
+  var name=getUserDisplayName()||u,vip=isVipUser(u),g=getGamification(),lvl=vip?99:Math.max(1,Math.floor(g.xp/150)+1);
 
-  var name=getUserDisplayName()||u;
-  var vip=isVipUser(u);
-  var g=getGamification();
-  var lvl=vip?99:Math.max(1,Math.floor(g.xp/150)+1);
-
-  var html='<div class="cabinet-header">'+getAvatarHTML('cabinet-avatar')+
-    '<div class="cabinet-info"><h1 class="'+(vip?'vip-name':'user-display-name')+'">'+esc(name)+'</h1>'
-    +'<p>Уровень '+lvl+' · '+g.xp+' XP · 🔥 '+g.streak+'д серия · Решено: '+g.solvedCount+'</p>'
-    +(vip?'<span class="vip-badge">👑 ADMIN</span>':'')
-    +'</div></div>';
-
-  // Stats
-  html+='<div class="stats-grid">'
-    +'<div class="stat-card"><div class="stat-label">XP</div><div class="stat-value">'+g.xp+'</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Уровень</div><div class="stat-value">'+lvl+'</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Решено</div><div class="stat-value">'+g.solvedCount+'</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Ошибок</div><div class="stat-value">'+g.mistakes.length+'</div></div>'
-    +'</div>';
-
-  // Chart
+  var html='<div class="cabinet-header">'+getAvatarHTML('cabinet-avatar')+'<div class="cabinet-info"><h1 class="'+(vip?'vip-name':'user-display-name')+'">'+esc(name)+'</h1><p>Уровень '+lvl+' · '+g.xp+' XP · 🔥 '+g.streak+'д серия · Решено: '+g.solvedCount+'</p>'+(vip?'<span class="vip-badge">👑 ADMIN</span>':'')+'</div></div>';
+  html+='<div class="stats-grid"><div class="stat-card"><div class="stat-label">XP</div><div class="stat-value">'+g.xp+'</div></div><div class="stat-card"><div class="stat-label">Уровень</div><div class="stat-value">'+lvl+'</div></div><div class="stat-card"><div class="stat-label">Решено</div><div class="stat-value">'+g.solvedCount+'</div></div><div class="stat-card"><div class="stat-label">Ошибок</div><div class="stat-value">'+g.mistakes.length+'</div></div></div>';
   html+='<div class="chart-card"><h3>📊 Активность за 7 дней</h3><canvas id="activityChart"></canvas></div>';
-
-  // Achievements
   html+='<div class="card"><h3>🏆 Достижения ('+g.achievements.length+' / '+ACHIEVEMENTS_DEF.length+')</h3><div class="ach-grid">';
-  ACHIEVEMENTS_DEF.forEach(function(a){
-    var unlocked=g.achievements.indexOf(a.id)>=0;
-    html+='<div class="ach-item '+(unlocked?'unlocked':'locked')+'">'
-      +'<span class="ach-icon">'+a.icon+'</span>'
-      +'<div class="ach-name">'+esc(a.title)+'</div>'
-      +'<div class="ach-desc">'+esc(a.desc)+'</div>'
-      +'</div>';
-  });
+  ACHIEVEMENTS_DEF.forEach(function(a){var unlocked=g.achievements.indexOf(a.id)>=0;html+='<div class="ach-item '+(unlocked?'unlocked':'locked')+'"><span class="ach-icon">'+a.icon+'</span><div class="ach-name">'+esc(a.title)+'</div><div class="ach-desc">'+esc(a.desc)+'</div></div>'});
   html+='</div></div>';
-
-  // Progress by topics
   html+='<div class="card"><h3>📈 Прогресс по темам</h3><div class="tp-list">';
   ['oge','ege'].forEach(function(ek){
     DATA[ek].topics.forEach(function(t){
-      var st=getTopicStats(t.id);
-      var pct=st?st.best:0;
-      html+='<div class="tp-item"><div class="tp-head">'
-        +'<span class="tp-title">'+ek.toUpperCase()+' №'+t.num+' · '+esc(t.title)+'</span>'
-        +'<span class="tp-badge '+(pct===100?'done':'')+'">'+pct+'%</span></div>'
-        +'<div class="progress"><div class="progress-bar" style="width:'+pct+'%"></div></div>'
-        +'</div>';
+      var st=getTopicStats(t.id),pct=st?st.best:0;
+      html+='<div class="tp-item"><div class="tp-head"><span class="tp-title">'+ek.toUpperCase()+' №'+t.num+' · '+esc(t.title)+'</span><span class="tp-badge '+(pct===100?'done':'')+'">'+pct+'%</span></div><div class="progress"><div class="progress-bar" style="width:'+pct+'%"></div></div></div>';
     });
   });
   html+='</div></div>';
-
-  // Streak rewards
   html+='<div class="card"><h3>🔥 Награды за серию дней</h3><div class="rewards-list">';
-  STREAK_REWARDS.forEach(function(r){
-    var done=g.streak>=r.days;
-    html+='<div class="reward-item '+(done?'done':'')+'">'
-      +'<span class="reward-icon">'+r.icon+'</span>'
-      +'<div class="reward-info"><b>'+esc(r.title)+'</b><small>'+r.days+' '+plural(r.days,'день','дня','дней')+' · '+esc(r.reward)+'</small></div>'
-      +(done?'<span class="reward-check">✓</span>':'')
-      +'</div>';
-  });
+  STREAK_REWARDS.forEach(function(r){var done=g.streak>=r.days;html+='<div class="reward-item '+(done?'done':'')+'"><span class="reward-icon">'+r.icon+'</span><div class="reward-info"><b>'+esc(r.title)+'</b><small>'+r.days+' '+plural(r.days,'день','дня','дней')+' · '+esc(r.reward)+'</small></div>'+(done?'<span class="reward-check">✓</span>':'')+'</div>'});
   html+='</div></div>';
-
-  // Leaderboard
-  html+='<div class="card"><h3>🥇 Топ по XP</h3>'+renderLeaderboard()+'</div>';
-
-  // Avatar
-  html+='<div class="card"><h3>🖼 Аватарка</h3><div class="avatar-upload-row">'+getAvatarHTML('cabinet-avatar')+
-    '<div class="avatar-upload-actions">'
-    +'<label class="avatar-upload-label">📷 Загрузить<input type="file" accept="image/*" id="avatarFileInput" style="display:none"></label>'
-    +'<button class="btn btn-ghost" id="removeAvatarBtn" type="button" style="padding:9px 14px;font-size:12.5px">Удалить</button>'
-    +'</div></div></div>';
-
-  // Admin panel
+  html+='<div class="card"><h3>🥇 Топ по XP '+(!cloudEnabled()?'<span style="font-size:11px;color:var(--text-dim);font-weight:400;text-transform:none;letter-spacing:0">(локальный)</span>':'<span style="font-size:11px;color:var(--success);font-weight:400;text-transform:none;letter-spacing:0">(глобальный)</span>')+'</h3>'+renderLeaderboard()+'</div>';
+  html+='<div class="card"><h3>🖼 Аватарка</h3><div class="avatar-upload-row">'+getAvatarHTML('cabinet-avatar')+'<div class="avatar-upload-actions"><label class="avatar-upload-label">📷 Загрузить<input type="file" accept="image/*" id="avatarFileInput" style="display:none"></label><button class="btn btn-ghost" id="removeAvatarBtn" type="button" style="padding:9px 14px;font-size:12.5px">Удалить</button></div></div></div>';
   if(vip){
     var ap=getAdminProfile();
-    html+='<div class="card"><h3>👑 Настройки администратора</h3><div class="admin-panel-grid">'
-      +'<div class="form-field"><label>Ник</label><input type="text" id="admNick" value="'+esc(ap.nick)+'"></div>'
-      +'<div class="form-field"><label>Emoji</label><input type="text" id="admEmoji" value="'+esc(ap.avatarEmoji)+'" maxlength="4"></div>'
-      +'<div class="form-field" style="grid-column:1/-1"><label>Статус</label><input type="text" id="admStatus" value="'+esc(ap.statusText)+'"></div>'
-      +'<div class="form-field" style="grid-column:1/-1"><label>Где показывать</label><select id="admPlace">'
-        +['header','home','cabinet','hidden'].map(function(v){return '<option value="'+v+'"'+(ap.statusPlacement===v?' selected':'')+'>'+({header:'В шапке',home:'На главной',cabinet:'Только в профиле',hidden:'Скрыть'})[v]+'</option>'}).join('')
-      +'</select></div></div>'
-      +'<button class="btn btn-primary" id="admSave" type="button">💾 Сохранить</button></div>';
+    html+='<div class="card"><h3>👑 Настройки администратора</h3><div class="admin-panel-grid"><div class="form-field"><label>Ник</label><input type="text" id="admNick" value="'+esc(ap.nick)+'"></div><div class="form-field"><label>Emoji</label><input type="text" id="admEmoji" value="'+esc(ap.avatarEmoji)+'" maxlength="4"></div><div class="form-field" style="grid-column:1/-1"><label>Статус</label><input type="text" id="admStatus" value="'+esc(ap.statusText)+'"></div><div class="form-field" style="grid-column:1/-1"><label>Где показывать</label><select id="admPlace">'+['header','home','cabinet','hidden'].map(function(v){return '<option value="'+v+'"'+(ap.statusPlacement===v?' selected':'')+'>'+({header:'В шапке',home:'На главной',cabinet:'Только в профиле',hidden:'Скрыть'})[v]+'</option>'}).join('')+'</select></div></div><button class="btn btn-primary" id="admSave" type="button">💾 Сохранить</button></div>';
   }
-
   html+='<div class="actions"><button class="btn btn-ghost" id="cabBack" type="button">← На главную</button></div>';
   setApp(html);
-
   document.getElementById('cabBack').onclick=renderHome;
-
-  // Chart
   requestAnimationFrame(function(){drawChart(document.getElementById('activityChart'))});
-
-  // Avatar upload
   var fi=document.getElementById('avatarFileInput');
-  if(fi)fi.onchange=function(){
-    var f=fi.files[0];if(!f)return;
-    if(f.size>5*1024*1024){showToast('Файл больше 5 МБ','⚠️');return}
-    resizeImage(f,200,function(dataUrl){
-      saveAvatar(dataUrl);renderCabinet();renderUserArea();showToast('Аватарка обновлена','✅');
-    });
-  };
+  if(fi)fi.onchange=function(){var f=fi.files[0];if(!f)return;if(f.size>5*1024*1024){showToast('Файл больше 5 МБ','⚠️');return}resizeImage(f,200,function(dataUrl){saveAvatar(dataUrl);renderCabinet();renderUserArea();scheduleSync();showToast('Аватарка обновлена','✅')})};
   var rm=document.getElementById('removeAvatarBtn');
   if(rm)rm.onclick=function(){removeAvatar();renderCabinet();renderUserArea();showToast('Аватарка удалена','🗑')};
-
   if(vip){
     var save=document.getElementById('admSave');
     if(save)save.onclick=function(){
-      var np={
-        nick:document.getElementById('admNick').value.trim()||'Admin',
-        avatarType:getAdminProfile().avatarType,
-        avatarEmoji:document.getElementById('admEmoji').value.trim()||'👑',
-        avatarImage:getAdminProfile().avatarImage,
-        statusText:document.getElementById('admStatus').value.trim(),
-        statusPlacement:document.getElementById('admPlace').value
-      };
+      var np={nick:document.getElementById('admNick').value.trim()||'Admin',avatarType:getAdminProfile().avatarType,avatarEmoji:document.getElementById('admEmoji').value.trim()||'👑',avatarImage:getAdminProfile().avatarImage,statusText:document.getElementById('admStatus').value.trim(),statusPlacement:document.getElementById('admPlace').value};
       saveAdminProfile(np);renderUserArea();showToast('Сохранено','✨');
     };
   }
-}
-
-function renderLeaderboard(){
-  var result=[];
-  var users=getUsers();
-  Object.keys(users).forEach(function(k){
-    try{
-      var g=JSON.parse(storage.get('inf_game_'+k)||'{}');
-      result.push({name:users[k].name,xp:g.xp||0,avatar:users[k].avatar||null,isSelf:k===getCurrentUser()});
-    }catch(e){}
-  });
-  var gg=JSON.parse(storage.get('inf_game_guest')||'{}');
-  if((gg.xp||0)>0)result.push({name:'Гость',xp:gg.xp||0,avatar:null,isSelf:!getCurrentUser()});
-  var ap=getAdminProfile();
-  result.push({name:ap.nick||'Admin',xp:999999,avatar:ap.avatarType==='image'?ap.avatarImage:null,emoji:ap.avatarEmoji||'👑',isSelf:isVipUser()});
-  result.sort(function(a,b){return b.xp-a.xp});
-
-  var html='<div class="lb-list">';
-  result.slice(0,10).forEach(function(item,i){
-    var medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);
-    var cls=i===0?'gold':i===1?'silver':i===2?'bronze':'';
-    var ava=item.avatar?'<img src="'+item.avatar+'">':(item.emoji||esc(item.name.charAt(0).toUpperCase()));
-    html+='<div class="lb-row '+(item.isSelf?'is-self':'')+'">'
-      +'<span class="lb-rank '+cls+'">'+medal+'</span>'
-      +'<span class="lb-ava">'+ava+'</span>'
-      +'<span class="lb-name">'+esc(item.name)+(item.isSelf?' <small>(вы)</small>':'')+'</span>'
-      +'<span class="lb-xp">'+item.xp.toLocaleString('ru-RU')+' XP</span>'
-      +'</div>';
-  });
-  html+='</div>';
-  return html;
+  scheduleSync();
 }
 
 function drawChart(canvas){
   if(!canvas)return;
-  var dpr=window.devicePixelRatio||1;
-  var rect=canvas.getBoundingClientRect();
+  var dpr=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();
   canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
   var ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
-  var W=rect.width,H=rect.height;
-
-  var hist=getGamification().history||{};
-  var days=[];
-  for(var i=6;i>=0;i--){
-    var d=new Date();d.setDate(d.getDate()-i);
-    var key=d.toISOString().slice(0,10);
-    days.push({key:key,label:d.getDate()+'/'+(d.getMonth()+1),solved:(hist[key]||{}).solved||0,errors:(hist[key]||{}).errors||0});
-  }
-
-  var padL=42,padB=32,padT=22,padR=14;
-  var chartW=W-padL-padR,chartH=H-padT-padB;
-
+  var W=rect.width,H=rect.height,hist=getGamification().history||{},days=[];
+  for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);var key=d.toISOString().slice(0,10);days.push({key:key,label:d.getDate()+'/'+(d.getMonth()+1),solved:(hist[key]||{}).solved||0,errors:(hist[key]||{}).errors||0})}
+  var padL=42,padB=32,padT=22,padR=14,chartW=W-padL-padR,chartH=H-padT-padB;
   ctx.clearRect(0,0,W,H);
-
-  var maxVal=1;
-  days.forEach(function(d){if(d.solved>maxVal)maxVal=d.solved;if(d.errors>maxVal)maxVal=d.errors});
+  var maxVal=1;days.forEach(function(d){if(d.solved>maxVal)maxVal=d.solved;if(d.errors>maxVal)maxVal=d.errors});
   maxVal=Math.ceil(maxVal*1.1);
-
-  // Grid
   ctx.strokeStyle='rgba(148,163,184,.15)';ctx.lineWidth=1;
-  for(var i=0;i<=4;i++){
-    var y=padT+(chartH/4)*i;
-    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
-    ctx.fillStyle='rgba(148,163,184,.7)';ctx.font='10px sans-serif';ctx.textAlign='right';
-    ctx.fillText(Math.round(maxVal*(1-i/4)),padL-8,y+3);
-  }
-
-  // Bars
-  var groupW=chartW/days.length;
-  var barW=Math.max(6,groupW*0.32);
+  for(var i=0;i<=4;i++){var y=padT+(chartH/4)*i;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.fillStyle='rgba(148,163,184,.7)';ctx.font='10px sans-serif';ctx.textAlign='right';ctx.fillText(Math.round(maxVal*(1-i/4)),padL-8,y+3)}
+  var groupW=chartW/days.length,barW=Math.max(6,groupW*.32);
   days.forEach(function(d,i){
-    var cx=padL+groupW*i+groupW/2;
-    var hS=(d.solved/maxVal)*chartH;
-    var hE=(d.errors/maxVal)*chartH;
-    if(hS>0){
-      ctx.fillStyle='#10b981';
-      ctx.fillRect(cx-barW-1,padT+chartH-hS,barW,hS);
-    }
-    if(hE>0){
-      ctx.fillStyle='#ef4444';
-      ctx.fillRect(cx+1,padT+chartH-hE,barW,hE);
-    }
-    ctx.fillStyle='rgba(148,163,184,.8)';ctx.font='10px sans-serif';ctx.textAlign='center';
-    ctx.fillText(d.label,cx,H-12);
+    var cx=padL+groupW*i+groupW/2,hS=(d.solved/maxVal)*chartH,hE=(d.errors/maxVal)*chartH;
+    if(hS>0){ctx.fillStyle='#10b981';ctx.fillRect(cx-barW-1,padT+chartH-hS,barW,hS)}
+    if(hE>0){ctx.fillStyle='#ef4444';ctx.fillRect(cx+1,padT+chartH-hE,barW,hE)}
+    ctx.fillStyle='rgba(148,163,184,.8)';ctx.font='10px sans-serif';ctx.textAlign='center';ctx.fillText(d.label,cx,H-12);
   });
-
-  // Legend
   ctx.textAlign='left';
-  ctx.fillStyle='#10b981';ctx.fillRect(padL,4,10,10);
-  ctx.fillStyle='rgba(241,245,249,.85)';ctx.font='11px sans-serif';ctx.fillText('Решено',padL+14,13);
-  ctx.fillStyle='#ef4444';ctx.fillRect(padL+80,4,10,10);
-  ctx.fillStyle='rgba(241,245,249,.85)';ctx.fillText('Ошибки',padL+94,13);
+  ctx.fillStyle='#10b981';ctx.fillRect(padL,4,10,10);ctx.fillStyle='rgba(241,245,249,.85)';ctx.font='11px sans-serif';ctx.fillText('Решено',padL+14,13);
+  ctx.fillStyle='#ef4444';ctx.fillRect(padL+80,4,10,10);ctx.fillStyle='rgba(241,245,249,.85)';ctx.fillText('Ошибки',padL+94,13);
 }
 
 function resizeImage(file,maxSize,cb){
@@ -1748,8 +1621,7 @@ function resizeImage(file,maxSize,cb){
   reader.onload=function(e){
     var img=new Image();
     img.onload=function(){
-      var c=document.createElement('canvas');
-      var s=Math.min(maxSize/img.width,maxSize/img.height,1);
+      var c=document.createElement('canvas'),s=Math.min(maxSize/img.width,maxSize/img.height,1);
       c.width=img.width*s;c.height=img.height*s;
       c.getContext('2d').drawImage(img,0,0,c.width,c.height);
       cb(c.toDataURL('image/jpeg',0.85));
@@ -1761,127 +1633,72 @@ function resizeImage(file,maxSize,cb){
 
 function saveAvatar(dataUrl){
   var u=getCurrentUser();if(!u)return;
-  if(isAdminUser(u)){
-    var ap=getAdminProfile();ap.avatarType='image';ap.avatarImage=dataUrl;saveAdminProfile(ap);
-  }else{
-    var users=getUsers();
-    if(users[u]){users[u].avatar=dataUrl;saveUsers(users)}
-  }
+  if(isAdminUser(u)){var ap=getAdminProfile();ap.avatarType='image';ap.avatarImage=dataUrl;saveAdminProfile(ap)}
+  else{var users=getUsers();if(users[u]){users[u].avatar=dataUrl;saveUsers(users)}}
 }
 function removeAvatar(){
   var u=getCurrentUser();if(!u)return;
-  if(isAdminUser(u)){
-    var ap=getAdminProfile();ap.avatarType='emoji';ap.avatarImage='';saveAdminProfile(ap);
-  }else{
-    var users=getUsers();
-    if(users[u]){users[u].avatar=null;saveUsers(users)}
-  }
+  if(isAdminUser(u)){var ap=getAdminProfile();ap.avatarType='emoji';ap.avatarImage='';saveAdminProfile(ap)}
+  else{var users=getUsers();if(users[u]){users[u].avatar=null;saveUsers(users)}}
 }
 
-/* ============ EXAM ============ */
+/* ============ EXAM / MISTAKES / SUPPORT / AUTH ============ */
 function renderExam(){
   setActiveNav('exam');
   crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span><span>/</span><b>Пробник</b>';
   document.getElementById('cH1').onclick=renderHome;
-  setApp('<h1 class="page-title">⏱ Пробный экзамен</h1><p class="lead">Скоро здесь появятся полноценные пробники в формате ОГЭ/ЕГЭ.</p>'
-    +'<div class="bento"><div class="b-card b-exam" data-exam="oge"><span class="b-badge">ОГЭ</span><h2>Пробник ОГЭ</h2><p>15 заданий · 150 мин</p></div>'
-    +'<div class="b-card b-exam" data-exam="ege"><span class="b-badge">ЕГЭ</span><h2>Пробник ЕГЭ</h2><p>27 заданий · 235 мин</p></div></div>');
-  var cards=app.querySelectorAll('.b-exam');
-  for(var i=0;i<cards.length;i++)cards[i].onclick=function(){showToast('Пробник в разработке','🚧')};
+  setApp('<h1 class="page-title">⏱ Пробный экзамен</h1><p class="lead">Скоро здесь появятся полноценные пробники.</p><div class="bento"><div class="b-card b-exam" data-exam="oge"><span class="b-badge">ОГЭ</span><h2>Пробник ОГЭ</h2><p>15 заданий · 150 мин</p></div><div class="b-card b-exam" data-exam="ege"><span class="b-badge">ЕГЭ</span><h2>Пробник ЕГЭ</h2><p>27 заданий · 235 мин</p></div></div>');
+  var cards=app.querySelectorAll('.b-exam');for(var i=0;i<cards.length;i++)cards[i].onclick=function(){showToast('Пробник в разработке','🚧')};
 }
 
-/* ============ MISTAKES ============ */
 function renderMistakes(){
   setActiveNav('mistakes');
   crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span><span>/</span><b>Работа над ошибками</b>';
   document.getElementById('cH1').onclick=renderHome;
   var g=getGamification(),ms=g.mistakes||[];
   var html='<h1 class="page-title">🎯 Работа над ошибками</h1>';
-  if(!ms.length){html+='<p class="lead">Здесь появятся задания, в которых вы ошиблись. Решайте — и раздел будет пуст!</p>'}
+  if(!ms.length)html+='<p class="lead">Здесь появятся задания, в которых вы ошиблись. Решайте — и раздел будет пуст!</p>';
   else{
     html+='<p class="lead">Всего ошибок: <b>'+ms.length+'</b></p><div class="topic-grid">';
-    ms.forEach(function(m,i){
-      html+='<div class="topic-card" style="cursor:default">'
-        +'<span class="topic-num-badge">'+(i+1)+'</span>'
-        +'<span class="topic-body"><b>'+esc(m.q)+'</b><small>Тема №'+esc(m.topicNum||'—')+'</small></span>'
-        +'<button class="chip" data-q="'+esc(m.q)+'" type="button" style="padding:6px 12px;font-size:12px">✓ Решил</button>'
-        +'</div>';
-    });
+    ms.forEach(function(m,i){html+='<div class="topic-card" style="cursor:default"><span class="topic-num-badge">'+(i+1)+'</span><span class="topic-body"><b>'+esc(m.q)+'</b><small>Тема №'+esc(m.topicNum||'—')+'</small></span><button class="chip" data-q="'+esc(m.q)+'" type="button" style="padding:6px 12px;font-size:12px">✓ Решил</button></div>'});
     html+='</div>';
   }
   setApp(html);
   var btns=app.querySelectorAll('.chip[data-q]');
-  for(var i=0;i<btns.length;i++)(function(b){
-    b.onclick=function(){resolveMistake(b.getAttribute('data-q'));renderMistakes();showToast('Ошибка снята','🎉')};
-  })(btns[i]);
+  for(var i=0;i<btns.length;i++)(function(b){b.onclick=function(){resolveMistake(b.getAttribute('data-q'));renderMistakes();showToast('Ошибка снята','🎉')}})(btns[i]);
 }
 
-/* ============ SUPPORT ============ */
 function renderSupport(){
   setActiveNav('support');
   crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span><span>/</span><b>Поддержка</b>';
   document.getElementById('cH1').onclick=renderHome;
-  var faqs=[
-    ['Как получать XP?','10 XP за правильный балл, +50 XP за идеально решённую тему.'],
-    ['Как сменить тему оформления?','Настройки ⚙️ → Тема.'],
-    ['Как сбросить прогресс?','Настройки → Сбросить прогресс.'],
-    ['Как загрузить аватарку?','Профиль → раздел «Аватарка» → Загрузить.']
-  ];
-  var html='<h1 class="page-title">🛟 Поддержка</h1><p class="lead">Почта: <b>'+esc(SUPPORT_EMAIL)+'</b></p>'
-    +'<div class="support-grid"><div><div class="card"><h3>FAQ</h3>'
-    +faqs.map(function(p){return '<div class="faq-item"><button class="faq-q" type="button"><span>'+esc(p[0])+'</span><span>▾</span></button><div class="faq-a">'+esc(p[1])+'</div></div>'}).join('')
-    +'</div></div><div><div class="card"><h3>Написать нам</h3>'
-    +'<div class="form-field"><label>Ваше имя</label><input type="text" id="supName"></div>'
-    +'<div class="form-field"><label>Тема</label><input type="text" id="supSubject"></div>'
-    +'<div class="form-field"><label>Сообщение</label><textarea id="supMsg" rows="5"></textarea></div>'
-    +'<button class="btn btn-primary" id="supSend" type="button">📧 Отправить</button>'
-    +'</div></div></div>';
+  var faqs=[['Как получать XP?','10 XP за правильный балл, +50 XP за идеально решённую тему.'],['Как сменить тему оформления?','Настройки ⚙️ → Тема.'],['Как сбросить прогресс?','Настройки → Сбросить прогресс.'],['Как загрузить аватарку?','Профиль → раздел «Аватарка» → Загрузить.'],['Как попасть в топ?','Настройте облако (JSONBin) — тогда ваш рейтинг виден всем.']];
+  var html='<h1 class="page-title">🛟 Поддержка</h1><p class="lead">Почта: <b>'+esc(SUPPORT_EMAIL)+'</b></p><div class="support-grid"><div><div class="card"><h3>FAQ</h3>'+faqs.map(function(p){return '<div class="faq-item"><button class="faq-q" type="button"><span>'+esc(p[0])+'</span><span>▾</span></button><div class="faq-a">'+esc(p[1])+'</div></div>'}).join('')+'</div></div><div><div class="card"><h3>Написать нам</h3><div class="form-field"><label>Ваше имя</label><input type="text" id="supName"></div><div class="form-field"><label>Тема</label><input type="text" id="supSubject"></div><div class="form-field"><label>Сообщение</label><textarea id="supMsg" rows="5"></textarea></div><button class="btn btn-primary" id="supSend" type="button">📧 Отправить</button></div></div></div>';
   setApp(html);
-  var fq=app.querySelectorAll('.faq-q');
-  for(var i=0;i<fq.length;i++)fq[i].onclick=function(){this.parentNode.classList.toggle('open')};
+  var fq=app.querySelectorAll('.faq-q');for(var i=0;i<fq.length;i++)fq[i].onclick=function(){this.parentNode.classList.toggle('open')};
   document.getElementById('supSend').onclick=function(){
-    var n=document.getElementById('supName').value.trim();
-    var s=document.getElementById('supSubject').value.trim();
-    var m=document.getElementById('supMsg').value.trim();
+    var n=document.getElementById('supName').value.trim(),s=document.getElementById('supSubject').value.trim(),m=document.getElementById('supMsg').value.trim();
     if(!n||!m){showToast('Заполните имя и сообщение','⚠️');return}
-    var subj=encodeURIComponent('[prepINFO] '+(s||'Обращение'));
-    var body=encodeURIComponent('От: '+n+'\n\n'+m);
+    var subj=encodeURIComponent('[prepINFO] '+(s||'Обращение')),body=encodeURIComponent('От: '+n+'\n\n'+m);
     window.location.href='mailto:'+SUPPORT_EMAIL+'?subject='+subj+'&body='+body;
     showToast('Открываем почтовый клиент','📧');
   };
 }
 
-/* ============ AUTH ============ */
 function renderAuth(mode){
   crumbs.innerHTML='<span class="crumb-link" id="cH1">Главная</span><span>/</span><b>'+(mode==='login'?'Вход':'Регистрация')+'</b>';
   document.getElementById('cH1').onclick=renderHome;
-  var html='<div class="auth-page"><div class="auth-card">'
-    +'<h1 class="page-title" style="font-size:22px;margin-bottom:16px">'+(mode==='login'?'Вход':'Создать аккаунт')+'</h1>'
-    +'<div class="auth-tabs"><button class="auth-tab'+(mode==='login'?' active':'')+'" data-mode="login" type="button">Вход</button>'
-    +'<button class="auth-tab'+(mode==='register'?' active':'')+'" data-mode="register" type="button">Регистрация</button></div>'
-    +'<div class="form-error" id="authErr"></div>'
-    +'<div class="form-field"><label>Имя пользователя</label><input type="text" id="authUser" autocomplete="username"></div>'
-    +'<div class="form-field"><label>Пароль</label><input type="password" id="authPass" autocomplete="current-password"></div>'
-    +(mode==='register'?'<div class="form-field"><label>Повторите пароль</label><input type="password" id="authPass2"></div>':'')
-    +'<button class="btn btn-primary" id="authSubmit" type="button" style="width:100%;margin-top:6px">'+(mode==='login'?'Войти':'Зарегистрироваться')+'</button>'
-    +'</div></div>';
+  var html='<div class="auth-page"><div class="auth-card"><h1 class="page-title" style="font-size:22px;margin-bottom:16px">'+(mode==='login'?'Вход':'Создать аккаунт')+'</h1><div class="auth-tabs"><button class="auth-tab'+(mode==='login'?' active':'')+'" data-mode="login" type="button">Вход</button><button class="auth-tab'+(mode==='register'?' active':'')+'" data-mode="register" type="button">Регистрация</button></div><div class="form-error" id="authErr"></div><div class="form-field"><label>Имя пользователя</label><input type="text" id="authUser" autocomplete="username"></div><div class="form-field"><label>Пароль</label><input type="password" id="authPass" autocomplete="current-password"></div>'+(mode==='register'?'<div class="form-field"><label>Повторите пароль</label><input type="password" id="authPass2"></div>':'')+'<button class="btn btn-primary" id="authSubmit" type="button" style="width:100%;margin-top:6px">'+(mode==='login'?'Войти':'Зарегистрироваться')+'</button></div></div>';
   setApp(html);
-  var tabs=app.querySelectorAll('.auth-tab');
-  for(var i=0;i<tabs.length;i++)tabs[i].onclick=function(){renderAuth(this.getAttribute('data-mode'))};
+  var tabs=app.querySelectorAll('.auth-tab');for(var i=0;i<tabs.length;i++)tabs[i].onclick=function(){renderAuth(this.getAttribute('data-mode'))};
   var err=document.getElementById('authErr');
   document.getElementById('authSubmit').onclick=function(){
     err.classList.remove('show');
-    var u=document.getElementById('authUser').value;
-    var p=document.getElementById('authPass').value;
-    var r;
+    var u=document.getElementById('authUser').value,p=document.getElementById('authPass').value,r;
     if(mode==='login')r=loginUser(u,p);
-    else{
-      var p2=document.getElementById('authPass2').value;
-      if(p!==p2){err.textContent='Пароли не совпадают';err.classList.add('show');return}
-      r=registerUser(u,p);
-    }
+    else{var p2=document.getElementById('authPass2').value;if(p!==p2){err.textContent='Пароли не совпадают';err.classList.add('show');return}r=registerUser(u,p)}
     if(!r.ok){err.textContent=r.error;err.classList.add('show');return}
-    renderUserArea();updateTopHUD();renderHome();
+    renderUserArea();updateTopHUD();renderHome();scheduleSync();
     showToast(mode==='login'?'С возвращением!':'Добро пожаловать!','🎉');
   };
 }
@@ -1889,8 +1706,8 @@ function renderAuth(mode){
 /* ============ BOT ============ */
 var BOT_KB=[
   {kw:['хартли','мощност','алфавит'],reply:'Формула Хартли: N = 2^i, где N — мощность алфавита, i — вес одного символа.\n\nПример: 32 = 2^5 → i = 5 бит.\n\nОбъём: I = K · i, где K — число символов.'},
-  {kw:['фано','префикс'],reply:'Условие Фано: ни одно кодовое слово не должно быть началом (префиксом) другого.\n\nПроверка: если A=00, то B не может начинаться с 00 (нельзя 001, 0000).\n\nДля построения используйте дерево: код = лист без потомков.'},
-  {kw:['двоичн','bin'],reply:'Перевод из двоичной в десятичную:\n1010₂ = 1·8 + 0·4 + 1·2 + 0·1 = 10₁₀\n\nИз десятичной в двоичную: делим на 2 с остатком, читаем остатки снизу вверх.\n\n13/2=6 (ост 1) → 6/2=3 (ост 0) → 3/2=1 (ост 1) → 1/2=0 (ост 1) → 1101₂'},
+  {kw:['фано','префикс'],reply:'Условие Фано: ни одно кодовое слово не должно быть началом (префиксом) другого.\n\nЕсли A=00, то B не может начинаться с 00 (нельзя 001, 0000).\n\nДля построения используйте дерево: код = лист без потомков.'},
+  {kw:['двоичн','bin'],reply:'Перевод из двоичной в десятичную:\n1010₂ = 1·8 + 0·4 + 1·2 + 0·1 = 10₁₀\n\nИз десятичной в двоичную: делим на 2 с остатком, читаем остатки снизу вверх.\n\n13 → 1101₂'},
   {kw:['логик','∧','∨','¬','импликац'],reply:'Логические операции:\n¬ (НЕ) — отрицание\n∧ (И) — 1 когда оба 1\n∨ (ИЛИ) — 1 когда хотя бы один 1\n→ (импликация) — ложна только при 1→0\n≡ (эквивалентность) — 1 когда равны\n\nПриоритет: ¬ > ∧ > ∨'},
   {kw:['граф','путь','кратчайш'],reply:'Для кратчайшего пути:\n1. Выпишите все маршруты\n2. Сложите веса рёбер\n3. Выберите минимум\n\nДля сложных графов — алгоритм Дейкстры.'},
   {kw:['массив','цикл','программ','for','while'],reply:'Типичные конструкции:\n\nfor i in range(1, 5):\n    s = s + i\n\nwhile x < 10:\n    x = x * 2\n\n// — деление нацело\n% — остаток'},
@@ -1903,34 +1720,23 @@ var BOT_KB=[
 
 function botReply(txt){
   var t=String(txt||'').toLowerCase();
-  for(var i=0;i<BOT_KB.length;i++){
-    for(var j=0;j<BOT_KB[i].kw.length;j++){
-      if(t.indexOf(BOT_KB[i].kw[j])>=0)return BOT_KB[i].reply;
-    }
-  }
+  for(var i=0;i<BOT_KB.length;i++)for(var j=0;j<BOT_KB[i].kw.length;j++)if(t.indexOf(BOT_KB[i].kw[j])>=0)return BOT_KB[i].reply;
   if(/спасибо|спс|благодар/.test(t))return 'Рад помочь! 💪';
   if(/привет|здравств|хай/.test(t))return 'Привет! Спрашивай про формулы, системы счисления, логику, графы, циклы, теорию игр.';
   return 'Не понял вопрос. Попробуй спросить про:\n• формулу Хартли\n• условие Фано\n• системы счисления\n• логические операции\n• графы и кратчайший путь\n• циклы и массивы\n• теорию игр\n• степени двойки\n• единицы информации';
 }
 
-function openChat(){
-  var w=document.getElementById('chatWindow');
-  if(w)w.classList.add('open');
-}
+function openChat(){var w=document.getElementById('chatWindow');if(w)w.classList.add('open')}
 
 document.getElementById('chatFab').onclick=function(){document.getElementById('chatWindow').classList.toggle('open')};
 document.getElementById('chatClose').onclick=function(){document.getElementById('chatWindow').classList.remove('open')};
 document.getElementById('chatForm').onsubmit=function(e){
   e.preventDefault();
-  var inp=document.getElementById('chatInput'),msgs=document.getElementById('chatMsgs');
-  var v=inp.value.trim();if(!v)return;
+  var inp=document.getElementById('chatInput'),msgs=document.getElementById('chatMsgs'),v=inp.value.trim();
+  if(!v)return;
   var u=document.createElement('div');u.className='msg user';u.textContent=v;msgs.appendChild(u);
-  inp.value='';
-  msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(function(){
-    var b=document.createElement('div');b.className='msg bot';b.textContent=botReply(v);
-    msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;
-  },350);
+  inp.value='';msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(function(){var b=document.createElement('div');b.className='msg bot';b.textContent=botReply(v);msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight},350);
 };
 
 /* ============ CALCULATOR & LAB ============ */
@@ -1938,10 +1744,7 @@ function updateCalcFrom(src){
   var val=document.getElementById('calc'+src).value.trim();
   try{
     var n=null;
-    if(src==='Dec')n=parseInt(val,10);
-    else if(src==='Bin')n=parseInt(val,2);
-    else if(src==='Oct')n=parseInt(val,8);
-    else if(src==='Hex')n=parseInt(val,16);
+    if(src==='Dec')n=parseInt(val,10);else if(src==='Bin')n=parseInt(val,2);else if(src==='Oct')n=parseInt(val,8);else if(src==='Hex')n=parseInt(val,16);
     if(n==null||isNaN(n))throw 0;
     document.getElementById('calcDec').value=n;
     document.getElementById('calcBin').value=n.toString(2);
@@ -1954,14 +1757,10 @@ function updateCalcFrom(src){
     document.getElementById('bitPow').textContent='2^'+(bits.length-1);
   }catch(e){}
 }
-['Dec','Bin','Oct','Hex'].forEach(function(k){
-  var el=document.getElementById('calc'+k);
-  if(el)el.addEventListener('input',function(){updateCalcFrom(k)});
-});
+['Dec','Bin','Oct','Hex'].forEach(function(k){var el=document.getElementById('calc'+k);if(el)el.addEventListener('input',function(){updateCalcFrom(k)})});
 
 function updateLab(){
-  var N=parseInt(document.getElementById('labN').value,10)||2;
-  var K=parseInt(document.getElementById('labK').value,10)||1;
+  var N=parseInt(document.getElementById('labN').value,10)||2,K=parseInt(document.getElementById('labK').value,10)||1;
   var i=Math.ceil(Math.log2(N)),I=K*i;
   document.getElementById('labInfoOut').innerHTML='i = ⌈log₂'+N+'⌉ = '+i+' бит<br>I = '+K+' · '+i+' = '+I+' бит = '+(I/8).toFixed(2)+' байт';
   var k=parseInt(document.getElementById('labPow').value,10)||0;
@@ -1969,15 +1768,11 @@ function updateLab(){
   var v=document.getElementById('labLogic').value.split(','),A=+v[0],B=+v[1];
   document.getElementById('labLogicOut').innerHTML='¬A='+(A?0:1)+' | ¬B='+(B?0:1)+'<br>A∧B='+(A&&B?1:0)+' | A∨B='+(A||B?1:0)+'<br>A→B='+(!A||B?1:0)+' | A≡B='+(A===B?1:0);
 }
-['labN','labK','labPow','labLogic'].forEach(function(id){
-  var el=document.getElementById(id);
-  if(el)el.addEventListener('input',updateLab);
-});
+['labN','labK','labPow','labLogic'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',updateLab)});
 
 function openCalcLab(tab){
   document.getElementById('calcLabDrawer').classList.add('open');
-  var tn=tab||'calc';
-  var tabs=document.querySelectorAll('[data-cltab]');
+  var tn=tab||'calc',tabs=document.querySelectorAll('[data-cltab]');
   for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle('active',tabs[i].getAttribute('data-cltab')===tn);
   document.getElementById('clPaneCalc').style.display=(tn==='calc')?'':'none';
   document.getElementById('clPaneLab').style.display=(tn==='lab')?'':'none';
@@ -1986,8 +1781,7 @@ function openCalcLab(tab){
 var cltabs=document.querySelectorAll('[data-cltab]');
 for(var i=0;i<cltabs.length;i++)(function(b){
   b.onclick=function(){
-    var t=b.getAttribute('data-cltab');
-    var all=document.querySelectorAll('[data-cltab]');
+    var t=b.getAttribute('data-cltab'),all=document.querySelectorAll('[data-cltab]');
     for(var j=0;j<all.length;j++)all[j].classList.toggle('active',all[j]===b);
     document.getElementById('clPaneCalc').style.display=(t==='calc')?'':'none';
     document.getElementById('clPaneLab').style.display=(t==='lab')?'':'none';
@@ -2002,52 +1796,20 @@ document.getElementById('calcLabOverlay').onclick=function(){document.getElement
 /* ============ SETTINGS ============ */
 document.getElementById('settingsBtn').onclick=function(){
   document.getElementById('settingsDrawer').classList.add('open');
-  var themes=document.querySelectorAll('[data-setting="theme"]');
-  for(var i=0;i<themes.length;i++)themes[i].classList.toggle('active',themes[i].getAttribute('data-value')===settings.theme);
-  var sizes=document.querySelectorAll('[data-setting="fontSize"]');
-  for(var i=0;i<sizes.length;i++)sizes[i].classList.toggle('active',sizes[i].getAttribute('data-value')===settings.fontSize);
+  var themes=document.querySelectorAll('[data-setting="theme"]');for(var i=0;i<themes.length;i++)themes[i].classList.toggle('active',themes[i].getAttribute('data-value')===settings.theme);
+  var sizes=document.querySelectorAll('[data-setting="fontSize"]');for(var i=0;i<sizes.length;i++)sizes[i].classList.toggle('active',sizes[i].getAttribute('data-value')===settings.fontSize);
   document.getElementById('toggleAnim').classList.toggle('on',settings.animations);
   document.getElementById('toggleSound').classList.toggle('on',settings.sound);
   document.getElementById('logoutBtn2').style.display=getCurrentUser()?'flex':'none';
 };
 document.getElementById('settingsClose').onclick=function(){document.getElementById('settingsDrawer').classList.remove('open')};
 document.getElementById('settingsOverlay').onclick=function(){document.getElementById('settingsDrawer').classList.remove('open')};
-
-var themeBtns=document.querySelectorAll('[data-setting="theme"]');
-for(var i=0;i<themeBtns.length;i++)(function(b){
-  b.onclick=function(){
-    settings.theme=b.getAttribute('data-value');saveSettings();applySettings();
-    var all=document.querySelectorAll('[data-setting="theme"]');
-    for(var j=0;j<all.length;j++)all[j].classList.toggle('active',all[j]===b);
-  };
-})(themeBtns[i]);
-var sizeBtns=document.querySelectorAll('[data-setting="fontSize"]');
-for(var i=0;i<sizeBtns.length;i++)(function(b){
-  b.onclick=function(){
-    settings.fontSize=b.getAttribute('data-value');saveSettings();applySettings();
-    var all=document.querySelectorAll('[data-setting="fontSize"]');
-    for(var j=0;j<all.length;j++)all[j].classList.toggle('active',all[j]===b);
-  };
-})(sizeBtns[i]);
-document.getElementById('toggleAnim').onclick=function(){
-  settings.animations=!settings.animations;saveSettings();applySettings();
-  this.classList.toggle('on',settings.animations);
-};
-document.getElementById('toggleSound').onclick=function(){
-  settings.sound=!settings.sound;saveSettings();
-  this.classList.toggle('on',settings.sound);
-};
-document.getElementById('resetProgressBtn').onclick=function(){
-  if(!confirm('Сбросить весь прогресс и XP?'))return;
-  storage.remove(getGameKey());
-  storage.remove('inf_results');
-  updateTopHUD();renderHome();showToast('Прогресс сброшен','🗑');
-};
-document.getElementById('logoutBtn2').onclick=function(){
-  logoutUser();renderUserArea();updateTopHUD();renderHome();
-  document.getElementById('settingsDrawer').classList.remove('open');
-  showToast('Вы вышли','👋');
-};
+var themeBtns=document.querySelectorAll('[data-setting="theme"]');for(var i=0;i<themeBtns.length;i++)(function(b){b.onclick=function(){settings.theme=b.getAttribute('data-value');saveSettings();applySettings();var all=document.querySelectorAll('[data-setting="theme"]');for(var j=0;j<all.length;j++)all[j].classList.toggle('active',all[j]===b)}})(themeBtns[i]);
+var sizeBtns=document.querySelectorAll('[data-setting="fontSize"]');for(var i=0;i<sizeBtns.length;i++)(function(b){b.onclick=function(){settings.fontSize=b.getAttribute('data-value');saveSettings();applySettings();var all=document.querySelectorAll('[data-setting="fontSize"]');for(var j=0;j<all.length;j++)all[j].classList.toggle('active',all[j]===b)}})(sizeBtns[i]);
+document.getElementById('toggleAnim').onclick=function(){settings.animations=!settings.animations;saveSettings();applySettings();this.classList.toggle('on',settings.animations)};
+document.getElementById('toggleSound').onclick=function(){settings.sound=!settings.sound;saveSettings();this.classList.toggle('on',settings.sound)};
+document.getElementById('resetProgressBtn').onclick=function(){if(!confirm('Сбросить весь прогресс и XP?'))return;storage.remove(getGameKey());storage.remove('inf_results');updateTopHUD();renderHome();showToast('Прогресс сброшен','🗑')};
+document.getElementById('logoutBtn2').onclick=function(){logoutUser();renderUserArea();updateTopHUD();renderHome();document.getElementById('settingsDrawer').classList.remove('open');showToast('Вы вышли','👋')};
 
 /* ============ NAV ============ */
 var navPills=document.querySelectorAll('.nav-pill[data-nav]');
@@ -2062,26 +1824,18 @@ for(var i=0;i<navPills.length;i++)(function(b){
   };
 })(navPills[i]);
 var footLinks=document.querySelectorAll('.footer-link[data-nav]');
-for(var i=0;i<footLinks.length;i++)(function(b){
-  b.onclick=function(){
-    var n=b.getAttribute('data-nav');
-    if(n==='support')renderSupport();
-  };
-})(footLinks[i]);
+for(var i=0;i<footLinks.length;i++)(function(b){b.onclick=function(){var n=b.getAttribute('data-nav');if(n==='support')renderSupport()}})(footLinks[i]);
 document.getElementById('logoBtn').onclick=renderHome;
 document.getElementById('footerChat').onclick=function(){document.getElementById('chatWindow').classList.toggle('open')};
 
-/* ============ START ============ */
+/* ============ INIT ============ */
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.body.classList.add('no-anim');
+window.addEventListener('resize',function(){var c=document.getElementById('activityChart');if(c)drawChart(c)},{passive:true});
+
 applySettings();
 renderUserArea();
 updateTopHUD();
 renderHome();
-
-// Resize chart on window resize
-window.addEventListener('resize',function(){
-  var c=document.getElementById('activityChart');
-  if(c)drawChart(c);
-});
 
 })();
 </script>
